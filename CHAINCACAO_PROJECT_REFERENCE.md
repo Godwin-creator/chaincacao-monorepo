@@ -4,7 +4,7 @@
 
 # Miabé Hackathon 2026 — PROJET T-01 — Phase 3 Finale
 
-# Équipe TG-16 : Shadow Garden — Novembre 2026
+# Équipe TG-16 : Shadow Garden — Mai 2026
 
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -16,7 +16,7 @@
 
 # Chaque membre l'uploade dans son outil IA pour garantir la cohérence des contributions.
 
-# Dernière mise à jour : Novembre 2026 — Session 0 : Initialisation cahier de référence
+# Dernière mise à jour : Mai 2026 — Session 0 : Initialisation cahier de référence
 
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -2104,7 +2104,7 @@ QrImageView(
 
 ## 23. HISTORIQUE DES SESSIONS
 
-### Session 0 — Novembre 2026 : Initialisation du Cahier de Référence
+### Session 0 — Mai 2026 : Initialisation du Cahier de Référence
 
 **Objectif** : Établir la source de vérité unique du projet ChainCacao avant le démarrage du développement Phase 3.
 
@@ -2136,7 +2136,7 @@ QrImageView(
 **Prochaines étapes prioritaires (Session 1) :**
 
 1. **[CRITIQUE]** Komi : créer le projet Supabase + tables + RLS
-2. **[CRITIQUE]** Komi : initialiser le monorepo GitHub + dossiers `web/`, `mobile/`, `contracts/`, `shared/`
+2. **[CRITIQUE]** Komi : initialiser le monorepo GitHub + dossiers `web/`, `mobile/`, `contracts/`, `shared/` ✓ [✅TERMINÉ]
 3. **[CRITIQUE]** Komi : déployer le smart contract `ChainCacao.sol` sur Polygon Amoy
 4. **[HAUTE]** Sophos : scaffolder le projet web React + Tailwind + intégration Supabase
 5. **[HAUTE]** Bikala : scaffolder le projet Flutter + structure dossiers + intégration Supabase
@@ -2151,7 +2151,7 @@ QrImageView(
 
 | Membre | Rôle | Sous-équipe | Email | Établissement |
 |--------|------|-------------|-------|---------------|
-| **EDOH BEDI Komi Godwin** | Développeur Web + Architecture | Web | (à compléter) | EPL |
+| **EDOH BEDI Komi Godwin** | Développeur Web + Architecture | Web | edohbedigodwin@gmail.com | EPL |
 | **FOLIKPO-AWUTE Dzogoedzikpe Sophos** | Développeur Web | Web | (à compléter) | IAI Togo |
 | **KOUYOM Bikala** | Développeur Mobile | Mobile | (à compléter) | Lomé Business School |
 | **QUENUM Abla Anne-Marie** | Développeuse Mobile | Mobile | (à compléter) | ESA |
