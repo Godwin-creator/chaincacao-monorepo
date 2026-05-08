@@ -81,9 +81,9 @@
 | Membre | Rôle | Sous-équipe | Établissement |
 |--------|------|-------------|---------------|
 | **EDOH BEDI Komi Godwin** | Développeur Web + Architecture | Web | EPL |
-| **FOLIKPO-AWUTE Dzogoedzikpe Sophos** | Développeur Web | Web | IAI Togo |
-| **KOUYOM Bikala** | Développeur Mobile | Mobile | Lomé Business School |
-| **QUENUM Abla Anne-Marie** | Développeuse Mobile | Mobile | ESA |
+| **FOLIKPO-AWUTE Dzogoedzikpe Sophos** | Développeur Web | Web | Lomé Business School |
+| **KOUYOM Bikala** | Développeur Mobile | Mobile | ESA |
+| **QUENUM Abla Anne-Marie** | Développeuse Mobile | Mobile | IAI Togo  |
 
 ### 1.2 Mission de ChainCacao
 
