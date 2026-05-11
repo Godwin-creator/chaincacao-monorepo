@@ -2135,15 +2135,15 @@ QrImageView(
 
 **Prochaines étapes prioritaires (Session 1) :**
 
-1. **[CRITIQUE]** Komi : créer le projet Supabase + tables + RLS
-2. **[CRITIQUE]** Komi : initialiser le monorepo GitHub + dossiers `web/`, `mobile/`, `contracts/`, `shared/` ✓ [✅TERMINÉ]
-3. **[CRITIQUE]** Komi : déployer le smart contract `ChainCacao.sol` sur Polygon Amoy
-4. **[HAUTE]** Sophos : scaffolder le projet web React + Tailwind + intégration Supabase
+1. **[CRITIQUE]** Komi : créer le projet Supabase + tables + RLS [✅TERMINÉ]
+2. **[CRITIQUE]** Komi : initialiser le monorepo GitHub + dossiers `web/`, `mobile/`, `contracts/`, `shared/` [✅TERMINÉ]
+3. **[CRITIQUE]** Komi : déployer le smart contract `ChainCacao.sol` sur Polygon Amoy [✅TERMINÉ]
+4. **[HAUTE]** Sophos : scaffolder le projet web React + Tailwind + intégration Supabase [✅TERMINÉ]
 5. **[HAUTE]** Bikala : scaffolder le projet Flutter + structure dossiers + intégration Supabase
 6. **[HAUTE]** Anne-Marie : créer le `theme.dart` ChainCacao + composants UI de base Flutter
-7. **[MOYENNE]** Tous : créer les 5 comptes utilisateurs de démo dans Supabase
-8. **[MOYENNE]** Komi : faucet MATIC pour le wallet maître ChainCacao
-9. **[FAIBLE]** Vectorisation des logos (SVG haute résolution)
+7. **[MOYENNE]** Tous : créer les 5 comptes utilisateurs de démo dans Supabase [✅TERMINÉ]
+8. **[MOYENNE]** Komi : faucet MATIC pour le wallet maître ChainCacao [✅TERMINÉ]
+9. **[FAIBLE]** Vectorisation des logos (SVG haute résolution)[✅TERMINÉ]
 
 ---
 

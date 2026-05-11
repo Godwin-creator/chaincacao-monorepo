@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Palette exacte du logo ChainCacao ── */
+  --color-cacao-green-dark  : #2D5016;  /* vert olive foncé cabosse */
+  --color-cacao-green       : #4A6B2A;  /* vert cabosse principal */
+  --color-cacao-brown       : #5D3A1F;  /* brun fève cacao */
+  --color-cacao-brown-light : #8B5E3C;  /* brun moyen cabosse */
+
+  --color-chain-bg          : #1A4A5A;  /* fond hexagonal bleu-teal */
+  --color-chain-cyan        : #2196C7;  /* cyan chaîne principal */
+  --color-chain-cyan-light  : #4FC3E8;  /* cyan clair highlights */
+
+  --color-gold-link         : #D4A574;  /* or/beige points de liaison */
+  --color-gold-premium      : #E8B547;  /* or certifications EUDR */
+
+  /* ── Neutres ── */
+  --color-white             : #FDFCF8;
+  --color-cream             : #F5F1E8;
+  --color-text-dark         : #1A1612;
+
+  /* ── États ── */
+  --color-success           : #4A6B2A;
+  --color-error             : #C1440E;
+  --color-warning           : #E8B547;
+  --color-info              : #4FC3E8;
+
+  /* ── Typographies ── */
+  --font-sans:  'Plus Jakarta Sans', sans-serif;
+  --font-body:  'Inter', sans-serif;
+  --font-mono:  'JetBrains Mono', monospace;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-cream);
+  color: var(--color-text-dark);
+}
