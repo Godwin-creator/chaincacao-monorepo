@@ -27,8 +27,9 @@ const LotsReceived  = lazy(() => import('./pages/cooperative/LotsReceived'))
 const TransferLot   = lazy(() => import('./pages/cooperative/TransferLot'))
 
 // ── Pages transformateur (lazy) ─────────────────────────────────────────────
-const ProcessorDashboard = lazy(() => import('./pages/processor/Dashboard'))
-const QualityEntry       = lazy(() => import('./pages/processor/QualityEntry'))
+const ProcessorDashboard  = lazy(() => import('./pages/processor/Dashboard'))
+const QualityEntry        = lazy(() => import('./pages/processor/QualityEntry'))
+const QualityEntryDetail  = lazy(() => import('./pages/processor/QualityEntryDetail'))
 
 // ── Pages exportateur (lazy) ────────────────────────────────────────────────
 const ExporterDashboard = lazy(() => import('./pages/exporter/Dashboard'))
@@ -92,8 +93,9 @@ const router = createBrowserRouter([
     path: '/processor',
     element: protectedLayout('processor', ProcessorLayout),
     children: [
-      { index: true,          element: wrap(ProcessorDashboard) },
-      { path: 'quality-entry', element: wrap(QualityEntry) },
+      { index: true,                   element: wrap(ProcessorDashboard) },
+      { path: 'quality-entry',         element: wrap(QualityEntry) },
+      { path: 'quality-entry/:lotId',  element: wrap(QualityEntryDetail) },
     ],
   },
 

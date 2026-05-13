@@ -9,6 +9,11 @@ import {
   getMockTransferHistory,
   MOCK_PROCESSORS,
 } from '../utils/mockCooperative';
+import {
+  getMockProcessorDashboard,
+  getMockProcessorLots,
+  getMockProcessorLotById,
+} from '../utils/mockProcessor';
 
 function normalizeLot(row) {
   return {
@@ -180,6 +185,51 @@ export async function confirmLotReception(lotUuid, { verifiedWeightKg, notes }) 
   return { success: true, source: 'mock', status: newStatus, deltaPct, txHash }
 }
 
+export async function fetchProcessorDashboard(processorId) {
+  try {
+    const { data, error } = await supabase
+      .from('processors')
+      .select(`
+        id, name, commune, region, capacity_kg, current_load_kg, staff_count,
+        lots:lots(
+          id, lot_uuid, species, weight_grams, status, received_at,
+          producer:producers(name)
+        )
+      `)
+      .eq('id', processorId)
+      .single()
+    if (data && !error) {
+      return { source: 'supabase', data: normalizeProcessorDashboard(data) }
+    }
+  } catch (_) {}
+  return { source: 'mock', data: getMockProcessorDashboard() }
+}
+
+function normalizeProcessorDashboard(row) {
+  const lots = row.lots ?? []
+  const byStatus = (s) => lots.filter((l) => l.status === s)
+  return {
+    profile: {
+      id: row.id, name: row.name, commune: row.commune, region: row.region,
+      capacityKg: row.capacity_kg ?? 0, currentLoadKg: row.current_load_kg ?? 0,
+      staffCount: row.staff_count ?? 0,
+    },
+    pipeline: {
+      received: byStatus('received').length,
+      fermenting: byStatus('fermenting').length,
+      drying: byStatus('drying').length,
+      ready: byStatus('processed').length,
+      avgFermentDays: 0,
+      avgDryingHumidity: 0,
+    },
+    monthlyStats: { lotsProcessedThisMonth: 0, weightProcessedKg: 0, avgFermentationDays: 0, avgFinalHumidity: 0, qualityGradeABreakdown: 0, rejectionRate: 0 },
+    weeklyProduction: [],
+    qualityGrades: [],
+    recentActivity: [],
+    alertLots: [],
+  }
+}
+
 export async function fetchProcessors() {
   try {
     const { data, error } = await supabase
@@ -340,4 +390,164 @@ function normalizeDashboard(row) {
     speciesBreakdown: [],
     supplierProducers: [],
   };
+}
+
+// ── Fonctions Saisie Qualité Transformateur ────────────────────────────────────
+
+function mockDelay(ms = 1000) {
+  const jitter = Math.floor(Math.random() * 500)
+  return new Promise((r) => setTimeout(r, ms + jitter))
+}
+
+function mockTxHash() {
+  return '0x' + Array.from({ length: 64 }, () => Math.floor(Math.random() * 16).toString(16)).join('')
+}
+
+// Copie profonde simple pour muter sans toucher le module
+function cloneLot(lot) {
+  return JSON.parse(JSON.stringify(lot))
+}
+
+// Cache mutable en mémoire pour la session (reset au rechargement)
+let _lotsCache = null
+function getLotsCache() {
+  if (!_lotsCache) _lotsCache = getMockProcessorLots().map(cloneLot)
+  return _lotsCache
+}
+
+export async function fetchProcessorLots(processorId, filters = {}) {
+  try {
+    // Tentative Supabase — non implémentée côté BDD pour l'instant
+  } catch (_) {}
+
+  await mockDelay(600)
+  let lots = getLotsCache()
+
+  if (filters.status && filters.status !== 'all') {
+    lots = lots.filter((l) => l.status === filters.status)
+  }
+  if (filters.search) {
+    const q = filters.search.toLowerCase()
+    lots = lots.filter(
+      (l) =>
+        l.lotUuid.toLowerCase().includes(q) ||
+        l.producerName.toLowerCase().includes(q) ||
+        l.originCooperative?.name.toLowerCase().includes(q),
+    )
+  }
+  if (filters.alertsOnly) {
+    const { getQualityAlerts } = await import('../utils/mockProcessor')
+    lots = lots.filter((l) => getQualityAlerts(l).length > 0)
+  }
+
+  return { source: 'mock', lots }
+}
+
+export async function fetchLotQualityById(lotId) {
+  try {
+    // Tentative Supabase — non implémentée
+  } catch (_) {}
+
+  await mockDelay(500)
+  const cache = getLotsCache()
+  const lot = cache.find((l) => l.id === lotId || l.lotUuid === lotId) ?? null
+  return { source: 'mock', lot }
+}
+
+export async function saveFermentationReading(lotId, reading) {
+  await mockDelay(800)
+  const cache = getLotsCache()
+  const lot = cache.find((l) => l.id === lotId || l.lotUuid === lotId)
+  if (!lot) return { success: false, error: 'Lot introuvable' }
+
+  lot.quality.fermentation.readings.push({
+    day: reading.day,
+    takenAt: new Date().toISOString(),
+    tempC: reading.tempC,
+    humidityPct: reading.humidityPct,
+    notes: reading.notes ?? '',
+  })
+
+  const txHash = mockTxHash()
+  return { success: true, lot: cloneLot(lot), txHash, source: 'mock' }
+}
+
+export async function startDryingStage(lotId, { method, initialHumidity }) {
+  await mockDelay(1000)
+  const cache = getLotsCache()
+  const lot = cache.find((l) => l.id === lotId || l.lotUuid === lotId)
+  if (!lot) return { success: false, error: 'Lot introuvable' }
+
+  lot.status = 'drying'
+  lot.quality.fermentation.completedAt = new Date().toISOString()
+  lot.quality.drying.startedAt = new Date().toISOString()
+  lot.quality.drying.method = method
+  lot.quality.drying.humidityStart = initialHumidity
+
+  const txHash = mockTxHash()
+  return { success: true, lot: cloneLot(lot), txHash, source: 'mock' }
+}
+
+export async function saveDryingReading(lotId, reading) {
+  await mockDelay(800)
+  const cache = getLotsCache()
+  const lot = cache.find((l) => l.id === lotId || l.lotUuid === lotId)
+  if (!lot) return { success: false, error: 'Lot introuvable' }
+
+  const start = new Date(lot.quality.drying.startedAt).getTime()
+  const hoursSinceStart = Math.round((Date.now() - start) / 3_600_000)
+
+  lot.quality.drying.readings.push({
+    hour: reading.hour ?? hoursSinceStart,
+    takenAt: new Date().toISOString(),
+    humidityPct: reading.humidityPct,
+    tempC: reading.tempC,
+  })
+
+  const txHash = mockTxHash()
+  return { success: true, lot: cloneLot(lot), txHash, source: 'mock' }
+}
+
+export async function completeSortingStage(lotId, { weightAfterKg, rejectPct, beanSizeCategory }) {
+  await mockDelay(1000)
+  const cache = getLotsCache()
+  const lot = cache.find((l) => l.id === lotId || l.lotUuid === lotId)
+  if (!lot) return { success: false, error: 'Lot introuvable' }
+
+  const lastReading = lot.quality.drying.readings[lot.quality.drying.readings.length - 1]
+  lot.quality.drying.completedAt = new Date().toISOString()
+  lot.quality.drying.humidityFinal = lastReading?.humidityPct ?? null
+  lot.quality.sorting.completedAt = new Date().toISOString()
+  lot.quality.sorting.weightAfterSortingKg = weightAfterKg
+  lot.quality.sorting.rejectPct = rejectPct
+  lot.quality.sorting.beanSizeCategory = beanSizeCategory
+
+  const txHash = mockTxHash()
+  return { success: true, lot: cloneLot(lot), txHash, source: 'mock' }
+}
+
+export async function finalizeGrading(lotId, { finalGrade, flavorProfile, defects, notes }) {
+  await mockDelay(1200)
+  const cache = getLotsCache()
+  const lot = cache.find((l) => l.id === lotId || l.lotUuid === lotId)
+  if (!lot) return { success: false, error: 'Lot introuvable' }
+
+  lot.status = 'processed'
+  lot.quality.grading.finalGrade = finalGrade
+  lot.quality.grading.flavorProfile = flavorProfile
+  lot.quality.grading.defects = defects
+  lot.quality.grading.notes = notes
+  lot.quality.grading.inspectedAt = new Date().toISOString()
+
+  // SHA-256 simulé via crypto.subtle (appel côté browser via la page)
+  // Ici on génère un hash factice pour le mock
+  const fakeHash = Array.from({ length: 64 }, () =>
+    Math.floor(Math.random() * 16).toString(16)
+  ).join('')
+  lot.quality.grading.onChainHash = fakeHash
+
+  const txHash = mockTxHash()
+  lot.quality.grading.onChainTxHash = txHash
+
+  return { success: true, lot: cloneLot(lot), txHash, onChainHash: fakeHash, source: 'mock' }
 }

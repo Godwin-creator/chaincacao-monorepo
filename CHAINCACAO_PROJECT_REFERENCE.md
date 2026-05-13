@@ -16,7 +16,7 @@
 
 # Chaque membre l'uploade dans son outil IA pour garantir la cohérence des contributions.
 
-# Dernière mise à jour : Mai 2026 — Session 0 : Initialisation cahier de référence
+# Dernière mise à jour : 13 Mai 2026 — Session 9 : Dashboard transformateur (ATC Kpalimé)
 
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -127,7 +127,8 @@ Sans traçabilité blockchain, le Togo perd l'accès au marché européen (princ
 | Wallet Connect | `@web3modal/wagmi` + `wagmi` + `viem` | Dernière | Connexion wallet multi-provider |
 | Cartographie | Leaflet + `react-leaflet` | Dernière | OpenStreetMap (libre, pas de Google Maps) |
 | QR Code génération | `qrcode.react` | Dernière | Génération côté client |
-| QR Code lecture | `html5-qrcode` | Dernière | Scan via webcam |
+| QR Code lecture | `html5-qrcode` | ^2.3.8 | Scan via webcam, import dynamique (lazy) |
+| Graphiques | `recharts` | ^3.8.1 | BarChart, PieChart donut pour dashboards |
 | Backend client | `@supabase/supabase-js` | v2 | Client Supabase |
 | Icônes | Lucide React | Dernière | SVG natif, léger, accessible |
 | Hébergement | Vercel | — | Déploiement continu depuis GitHub |
@@ -1939,21 +1940,21 @@ QrImageView(
 
 | # | Élément | Sous-équipe | Statut |
 |---|---------|-------------|--------|
-| 1 | Smart contract `ChainCacao.sol` déployé sur Polygon Amoy | Web (Komi) | ⏳ |
-| 2 | Tables Supabase + RLS configurées | Web (Komi) | ⏳ |
-| 3 | Site vitrine public (Home, About, How It Works) | Web (Sophos) | ⏳ |
-| 4 | Page de vérification publique `/verify/:lotId` | Web (Sophos) | ⏳ |
-| 5 | Auth Supabase (login/signup avec rôles) | Web + Mobile | ⏳ |
-| 6 | Dashboard Coopérative + réception lot | Web (Sophos) | ⏳ |
-| 7 | Dashboard Transformateur + saisie qualité | Web (Sophos) | ⏳ |
+| 1 | Smart contract `ChainCacao.sol` déployé sur Polygon Amoy | Web (Komi) | ✅ |
+| 2 | Tables Supabase + RLS configurées | Web (Komi) | ✅ |
+| 3 | Site vitrine public (Home, About, How It Works) | Web (Sophos) | ✅ |
+| 4 | Page de vérification publique `/verify/:lotId` | Web (Sophos) | ✅ |
+| 5 | Auth Supabase (login/signup avec rôles) | Web + Mobile | ✅ Web · ⏳ Mobile |
+| 6 | Dashboard Coopérative + réception lot + transferts | Web (Sophos) | ✅ |
+| 7 | Dashboard Transformateur + saisie qualité | Web (Sophos) | 🚧 Dashboard ✅ · Saisie qualité ⏳ |
 | 8 | Dashboard Exportateur + génération certificat EUDR | Web (Sophos + Komi) | ⏳ |
 | 9 | Vercel Functions critiques (register-lot, transfer, verify) | Web (Komi) | ⏳ |
 | 10 | App Flutter Android : login + dashboard producteur | Mobile (Bikala) | ⏳ |
 | 11 | App Flutter Android : création lot + capture GPS + photos | Mobile (Anne-Marie) | ⏳ |
 | 12 | App Flutter Android : enregistrement parcelle GPS | Mobile (Anne-Marie) | ⏳ |
 | 13 | App Flutter Android : mode offline + SyncService | Mobile (Bikala) | ⏳ |
-| 14 | Génération QR Code (web + mobile) | Web + Mobile | ⏳ |
-| 15 | Lecture QR Code (web + mobile) | Web + Mobile | ⏳ |
+| 14 | Génération QR Code (web + mobile) | Web + Mobile | ✅ Web · ⏳ Mobile |
+| 15 | Lecture QR Code (web + mobile) | Web + Mobile | ✅ Web (html5-qrcode, lazy) · ⏳ Mobile |
 | 16 | APK Android signé téléchargeable | Mobile | ⏳ |
 | 17 | Déploiement Vercel fonctionnel | Web (Komi) | ⏳ |
 | 18 | Documentation technique (README, API docs) | Tous | ⏳ |
@@ -2088,17 +2089,36 @@ QrImageView(
 | Typographies | Plus Jakarta Sans + Inter + JetBrains Mono | Nov 2026 | Modernité tech-agricole, lisibilité, données techniques |
 | Wallet utilisateur V1 | Wallet maître unique ChainCacao | Nov 2026 | Simplifie UX (pas de gas pour utilisateurs) |
 
+### 22.1 Décisions actées (complément Sessions 1-9)
+
+| Décision | Choix | Date | Justification |
+|----------|-------|------|---------------|
+| Recharts pour graphiques | `recharts ^3.8.1` | Mai 2026 | BarChart + PieChart donut, bundle acceptable |
+| html5-qrcode (lazy) | Import dynamique `Html5QrcodeScanner` | Mai 2026 | Évite d'alourdir le bundle initial |
+| Pattern mock/Supabase | try Supabase → catch → fallback mock | Mai 2026 | Démo fonctionnelle même sans tables configurées |
+| Routes coopérative | `/cooperative`, `/cooperative/lots-received`, `/cooperative/transfer-lot` | Mai 2026 | Nommage final confirmé dans App.jsx |
+| Route transfert | `/cooperative/transfer-lot` (pas `/cooperative/transfer`) | Mai 2026 | Correction par rapport à spec initiale |
+| SidebarContent module-level | Défini hors du composant Layout | Mai 2026 | Évite unmount/remount React à chaque re-render |
+| Modal bottom-sheet mobile | `AnimatePresence` + `motion.aside` slide-up | Mai 2026 | UX mobile-first pour terrain (tablette/smartphone) |
+| SelectionSummary sticky | Sidebar desktop + bottom-bar fixe mobile | Mai 2026 | Accès permanent au récapitulatif pendant sélection |
+| Guard `beforeunload` | Actif si sélection lots > 0 non confirmée | Mai 2026 | Éviter perte de sélection par navigation accidentelle |
+| Historique transferts lazy | Chargé uniquement au premier switch d'onglet | Mai 2026 | Optimisation réseau/Supabase |
+| Pipeline transformateur | Composant `ProcessingPipeline` autonome | Mai 2026 | Réutilisable sur page saisie qualité |
+
 ### 22.2 Décisions en attente
 
 | Décision | Statut |
 |----------|--------|
-| Logos SVG haute résolution (vectorisation) | ⏳ À faire |
-| Création des comptes test (5 acteurs démo) | ⏳ À faire |
+| Logos SVG haute résolution (vectorisation) | ✅ Terminé |
+| Création des comptes test (5 acteurs démo) | ✅ Terminé |
 | Choix du nom utilisateur démo (Kossi AYITE ?) | ⏳ À valider |
 | Vidéo de secours pour démo (Plan B) | ⏳ À tourner avant finale |
-| Faucet MATIC Amoy (financement gas) | ⏳ Komi à charger |
-| Ouverture compte Supabase (free tier) | ⏳ Komi à créer |
+| Faucet MATIC Amoy (financement gas) | ✅ Terminé |
+| Ouverture compte Supabase (free tier) | ✅ Terminé |
 | Configuration domaine Vercel | ⏳ Komi à déployer |
+| Saisie qualité transformateur (QualityEntry.jsx) | ⏳ Session suivante |
+| Dashboard exportateur + certificat EUDR | ⏳ Prochaine priorité |
+| Dashboard vérificateur | ⏳ À planifier |
 
 ---
 
@@ -2143,7 +2163,96 @@ QrImageView(
 6. **[HAUTE]** Anne-Marie : créer le `theme.dart` ChainCacao + composants UI de base Flutter
 7. **[MOYENNE]** Tous : créer les 5 comptes utilisateurs de démo dans Supabase [✅TERMINÉ]
 8. **[MOYENNE]** Komi : faucet MATIC pour le wallet maître ChainCacao [✅TERMINÉ]
-9. **[FAIBLE]** Vectorisation des logos (SVG haute résolution)[✅TERMINÉ]
+9. **[FAIBLE]** Vectorisation des logos (SVG haute résolution) [✅TERMINÉ]
+
+---
+
+### Session 1–4 — Mai 2026 : Scaffolding & fondations web
+
+**Réalisations :**
+- Monorepo GitHub initialisé (`web/`, `mobile/`, `contracts/`, `shared/`)
+- Smart contract `ChainCacao.sol` déployé sur Polygon Amoy
+- Supabase : projet créé, tables + RLS configurées, 5 comptes démo créés
+- Scaffold React 19 + Vite + Tailwind CSS 4 (`@theme {}` dans `index.css`)
+- Tokens couleurs : `chain-bg`, `chain-cyan`, `chain-cyan-light`, `cacao-brown`, `cacao-green`, `gold-premium`, `gold-link`, `error`, `warning`, `cream`
+- Typographies configurées : `font-sans` (Plus Jakarta Sans), `font-body` (Inter), `font-mono` (JetBrains Mono)
+- Intégration Supabase (`lib/supabase.js`) — throw si variables manquantes
+- `.env.example` créé, `.env.local` exclu du tracking
+
+**Fichiers clés créés :** `web/src/lib/supabase.js`, `web/index.css`, `tailwind.config.js`, `vite.config.js`
+
+---
+
+### Session 5 — Mai 2026 : Routing + Auth (Tâche 5)
+
+**Réalisations :**
+- `createBrowserRouter` (React Router v7) avec lazy loading sur toutes les pages rôle
+- `AuthProvider` dans `hooks/useAuth.js` : lit le rôle depuis `user_metadata` puis fallback table `profiles`
+- `signIn` retourne `{ data, error, role }` · `signOut` fait `window.location.replace('/')`
+- `ProtectedRoute` → `RoleGuard` → `Layout` (lazy) → pages enfants (lazy)
+- 4 layouts créés : `CooperativeLayout`, `ProcessorLayout`, `ExporterLayout`, `VerifierLayout`
+- Pages auth complètes : `Login.jsx` (boutons démo, redirection par rôle), `Signup.jsx` (mapping libellé→rôle)
+- `LoadingState.jsx` — spinner fallback Suspense
+- `components/ui/Card.jsx`, `Badge.jsx` (8 variants), `components/team/TeamAvatar.jsx`
+
+---
+
+### Session 6 — 11 Mai 2026 : Dashboard Coopérative (Tâche 6)
+
+**Réalisations :**
+- `pages/cooperative/Dashboard.jsx` complet : header + bandeau attention + 4 KpiCards + BarChart + PieChart donut + zone travail (lots récents + top producteurs) + 3 quick actions
+- `components/dashboard/KpiCard.jsx` : count-up animé `useInView` + `requestAnimationFrame` (easeOutCubic)
+- `recharts ^3.8.1` installé
+- `CooperativeLayout.jsx` enrichi : CTA "Réceptionner", icônes lucide sur nav, TeamAvatar, drawer mobile `AnimatePresence`
+- `utils/mockCooperative.js` : données SCOOPS Wawa (pendingLots, recentLots, stats, weeklyVolume, speciesBreakdown, supplierProducers)
+- `lib/api.js` : `fetchCooperativeDashboard` avec pattern Supabase-try/mock-fallback
+
+---
+
+### Session 7 — 11 Mai 2026 : Lots reçus coopérative (Tâche 7)
+
+**Réalisations :**
+- `pages/cooperative/LotsReceived.jsx` : liste filtrable (statut, espèce, recherche), tableau desktop / cards mobile, vue carte placeholder, query params `?action=new / ?filter=pending / ?view=map`
+- 20 lots mock dans `utils/mockCooperative.js` (4 pending / 6 received / 3 alert / 7 transferred)
+- Exports ajoutés : `getMockCooperativeLots(filters)`, `getMockLotByUuid(uuid)`, `getMockPendingLots()`
+- `utils/format.js` créé : `formatWeight`, `formatRelativeDate`, `formatFullDate`, `formatDelta`
+- `components/ui/Modal.jsx` : bottom-sheet mobile + dialog desktop, scroll-lock, focus trap, Escape key
+- `components/qr/QRScanner.jsx` : html5-qrcode lazy (`import()`), facingMode environment, fallback saisie manuelle, regex UUID `\/verify\/([a-zA-Z0-9_-]+)`
+- `components/cooperative/ReceptionModal.jsx` : machine 4 étapes (scan → confirm → verify → success), calcul écart temps réel, checkbox alerte > 2%, txHash mock
+- `lib/api.js` : `fetchCooperativeLots`, `fetchLotByUuid`, `confirmLotReception` (délai 1500ms mock)
+
+---
+
+### Session 8 — 13 Mai 2026 : Transferts coopérative (Tâche 8)
+
+**Réalisations :**
+- `pages/cooperative/TransferLot.jsx` : 2 onglets (Nouveau transfert / Historique), sélection multi-lots (`Set`, O(1)), guard `beforeunload`
+- `components/cooperative/ProcessorCard.jsx` : jauge capacité (vert < 70% / orange 70-90% / rouge > 90%), badges spécialités + certifications, détection incompatibilité espèces
+- `components/cooperative/SelectionSummary.jsx` : sidebar desktop + bottom-bar fixe mobile
+- `components/cooperative/TransferConfirmModal.jsx` : 4 étapes (confirm → executing → success | error), messages rotatifs blockchain toutes les 600ms, animation check vert
+- `utils/mockCooperative.js` enrichi : `MOCK_PROCESSORS` (4 transformateurs région Plateaux), 8 transferts historiques, `getMockProcessors()`, `getMockTransferHistory()`, `getMockTransferableLots()`
+- `lib/api.js` : `fetchProcessors`, `fetchTransferableLots`, `fetchTransferHistory`, `executeBatchTransfer` (délai 2000ms mock + txHash 64 hex)
+- Historique onglet chargement lazy (au premier switch seulement)
+
+---
+
+### Session 9 — 13 Mai 2026 : Dashboard Transformateur (Tâche 9)
+
+**Réalisations :**
+- `pages/processor/Dashboard.jsx` complet : header + bandeau attention (pending/alertes/prêts) + 4 KpiCards + Pipeline + BarChart hebdo + donut Grade A/B/C + activité récente (timeline) + lots alertes + 3 quick actions
+- `components/processor/ProcessingPipeline.jsx` : 4 étapes (Reçus/Fermentation/Séchage/Prêts), horizontal desktop + vertical mobile, count-up animé par étape, stagger 0.1s, hints contextuels, lien `/processor/quality-entry?filter=`
+- `ProcessorLayout.jsx` enrichi : même pattern que CooperativeLayout (drawer mobile, TeamAvatar, CTA "Saisir qualité", 4 navlinks avec icônes)
+- `utils/mockProcessor.js` créé : profil ATC Kpalimé, 18 lots (4 received / 6 fermenting / 5 drying / 3 processed), stats mensuelles, pipeline, weeklyProduction, qualityGrades (A/B/C), recentActivity (10 événements), alertLots
+- `lib/api.js` : `fetchProcessorDashboard` avec pattern Supabase-try/fallback mock
+
+**État du build** : ✅ 2855 modules, 0 erreurs, 2.35s
+
+**Prochaines étapes (Session 10+) :**
+1. **[CRITIQUE]** `QualityEntry.jsx` — saisie données qualité transformateur (fermentation, séchage, grade)
+2. **[HAUTE]** `Dashboard.jsx` exportateur — pipeline export + certificat EUDR
+3. **[HAUTE]** Déploiement Vercel initial (pour tests d'intégration)
+4. **[MOYENNE]** `LotsIncoming.jsx` transformateur — réception lots depuis coopérative
+5. **[MOYENNE]** Dashboard vérificateur
 
 ---
 
@@ -2162,6 +2271,6 @@ QrImageView(
 
 ---
 
-*Dernière mise à jour : 8 Mai 2026 — Session 0*
+*Dernière mise à jour : 13 Mai 2026 — Session 9 : Dashboard transformateur (ATC Kpalimé)*
 *Ce document évolue avec le projet — toute modification doit être datée et consignée dans la section 23.*
 *Source de vérité unique du projet ChainCacao à respecter.*
