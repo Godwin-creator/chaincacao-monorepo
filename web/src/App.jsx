@@ -106,7 +106,9 @@ const router = createBrowserRouter([
     children: [
       { index: true,                element: wrap(ExporterDashboard) },
       { path: 'eudr-certificate',   element: wrap(EUDRCertificate) },
+      { path: 'eudr-certificate/:shipmentId', element: wrap(EUDRCertificate) },
       { path: 'export-records',     element: wrap(ExportRecords) },
+      { path: 'export-records/:shipmentId', element: wrap(ExportRecords) },
     ],
   },
 
@@ -117,6 +119,7 @@ const router = createBrowserRouter([
     children: [
       { index: true,         element: wrap(VerifierDashboard) },
       { path: 'lot-inspection', element: wrap(LotInspection) },
+      { path: 'lot-inspection/:uuid', element: wrap(LotInspection) },
     ],
   },
 
