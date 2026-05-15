@@ -11,10 +11,10 @@ const ROLE_ROUTES = {
 }
 
 const DEMO_ACCOUNTS = [
-  { label: 'Coopérative',     email: 'demo-cooperative@chaincacao.tg', password: 'Demo2026!' },
-  { label: 'Transformateur',  email: 'demo-processor@chaincacao.tg',   password: 'Demo2026!' },
-  { label: 'Exportateur',     email: 'demo-exporter@chaincacao.tg',    password: 'Demo2026!' },
-  { label: 'Vérificateur UE', email: 'demo-verifier@chaincacao.tg',    password: 'Demo2026!' },
+  { label: 'Coopérative',     email: 'cooperative@chaincacao.tg',  password: 'Demo1234!' },
+  { label: 'Transformateur',  email: 'transformateur@chaincacao.tg', password: 'Demo1234!' },
+  { label: 'Exportateur',     email: 'exportateur@chaincacao.tg',  password: 'Demo1234!' },
+  { label: 'Vérificateur UE', email: 'verificateur@chaincacao.tg', password: 'Demo1234!' },
 ]
 
 function mapErrorToFR(error) {

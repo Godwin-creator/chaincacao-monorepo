@@ -3,6 +3,13 @@ import { supabase } from '../lib/supabase'
 
 const AuthContext = createContext(null)
 
+const DEMO_ROLE_MAP = {
+  'cooperative@chaincacao.tg':    'cooperative',
+  'transformateur@chaincacao.tg': 'processor',
+  'exportateur@chaincacao.tg':    'exporter',
+  'verificateur@chaincacao.tg':   'verifier',
+}
+
 export function AuthProvider({ children }) {
   const [user, setUser]       = useState(null)
   const [session, setSession] = useState(null)
@@ -16,15 +23,22 @@ export function AuthProvider({ children }) {
     const metaRole = currentUser.user_metadata?.role
     if (metaRole) { setRole(metaRole); return }
 
+    if (!supabase) { setRole(null); return }
+
     const { data } = await supabase
-      .from('profiles')
+      .from('users')
       .select('role')
-      .eq('user_id', currentUser.id)
+      .eq('id', currentUser.id)
       .single()
     setRole(data?.role ?? null)
   }, [])
 
   useEffect(() => {
+    if (!supabase) {
+      setLoading(false)
+      return
+    }
+
     let mounted = true
 
     supabase.auth.getSession().then(async ({ data: { session: initial }, error: sessionError }) => {
@@ -57,15 +71,28 @@ export function AuthProvider({ children }) {
 
   async function signIn(email, password) {
     setError(null)
+
+    if (!supabase) {
+      const demoRole = DEMO_ROLE_MAP[email]
+      if (demoRole && password === 'Demo1234!') {
+        const demoUser = { id: 'demo', email, user_metadata: { role: demoRole } }
+        setUser(demoUser)
+        setRole(demoRole)
+        return { data: { user: demoUser }, error: null, role: demoRole }
+      }
+      const err = { message: 'Compte non reconnu. Utilisez un des boutons de connexion démo.' }
+      return { data: null, error: err, role: null }
+    }
+
     const { data, error: signInError } = await supabase.auth.signInWithPassword({ email, password })
     if (signInError) return { data: null, error: signInError, role: null }
 
     let resolvedRole = data.user?.user_metadata?.role ?? null
     if (!resolvedRole) {
       const { data: profile } = await supabase
-        .from('profiles')
+        .from('users')
         .select('role')
-        .eq('user_id', data.user.id)
+        .eq('id', data.user.id)
         .single()
       resolvedRole = profile?.role ?? null
     }
@@ -75,6 +102,13 @@ export function AuthProvider({ children }) {
 
   async function signUp(email, password, { role: userRole, fullName, organization }) {
     setError(null)
+
+    if (!supabase) {
+      const err = { message: 'Inscription non disponible en mode démonstration.' }
+      setError(err)
+      return { data: null, error: err }
+    }
+
     const { data, error: signUpError } = await supabase.auth.signUp({
       email,
       password,
@@ -87,11 +121,19 @@ export function AuthProvider({ children }) {
   }
 
   async function signOut() {
+    if (!supabase) {
+      setUser(null)
+      setSession(null)
+      setRole(null)
+      window.location.replace('/')
+      return
+    }
     await supabase.auth.signOut()
     window.location.replace('/')
   }
 
   async function refreshRole() {
+    if (!supabase) return
     const { data: { user: currentUser } } = await supabase.auth.getUser()
     if (currentUser) await fetchRole(currentUser)
   }
