@@ -18,6 +18,7 @@ class ChainCacaoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Infrastructure partagée (singletons)
     final dbHelper = DatabaseHelper.instance;
     final apiClient = ApiClient();
     final syncQueueRepo = SyncQueueRepository(dbHelper);
@@ -26,10 +27,24 @@ class ChainCacaoApp extends StatelessWidget {
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AuthService()..fetchUserProfile()),
-        ChangeNotifierProvider(create: (_) => ConnectivityService()..checkInitialStatus()),
-        ChangeNotifierProvider(create: (context) => LotService(lotRepo)),
-        ChangeNotifierProvider(create: (context) => ParcelService(parcelRepo)),
+        // ── Services fondamentaux ──────────────────────────────────────
+        ChangeNotifierProvider(
+          create: (_) => AuthService()..fetchUserProfile(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => ConnectivityService()..checkInitialStatus(),
+        ),
+
+        // ── Repositories exposés (utilisés par SyncStatusScreen) ───────
+        Provider<SyncQueueRepository>.value(value: syncQueueRepo),
+        Provider<LotRepository>.value(value: lotRepo),
+        Provider<ParcelRepository>.value(value: parcelRepo),
+
+        // ── Services métier ────────────────────────────────────────────
+        ChangeNotifierProvider(create: (_) => LotService(lotRepo)),
+        ChangeNotifierProvider(create: (_) => ParcelService(parcelRepo)),
+
+        // ── SyncService dépend de ConnectivityService ──────────────────
         ChangeNotifierProxyProvider<ConnectivityService, SyncService>(
           create: (context) => SyncService(
             syncQueueRepo,
@@ -37,7 +52,7 @@ class ChainCacaoApp extends StatelessWidget {
             parcelRepo,
             context.read<ConnectivityService>(),
           ),
-          update: (context, connectivity, sync) => sync!,
+          update: (context, connectivity, previous) => previous!,
         ),
       ],
       child: MaterialApp(
@@ -46,6 +61,12 @@ class ChainCacaoApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: AppRoutes.login,
         routes: AppRoutes.routes,
+        // Bonne pratique : afficher une SnackBar globale plutôt que des dialogs
+        builder: (context, child) => GestureDetector(
+          // Ferme le clavier si on tap en dehors d'un champ
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: child!,
+        ),
       ),
     );
   }
