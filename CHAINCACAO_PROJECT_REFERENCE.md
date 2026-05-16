@@ -25,6 +25,7 @@
 ## TABLE DES MATIÈRES
 
 **SECTIONS FONDATRICES (communes à toute l'équipe)**
+
 1. Identité du projet
 2. Stack technologique figée
 3. Identité visuelle
@@ -78,12 +79,12 @@
 
 ### 1.1 Membres de l'équipe TG-16
 
-| Membre | Rôle | Sous-équipe | Établissement |
-|--------|------|-------------|---------------|
-| **EDOH BEDI Komi Godwin** | Développeur Web + Architecture | Web | EPL |
-| **FOLIKPO-AWUTE Dzogoedzikpe Sophos** | Développeur Web | Web | Lomé Business School |
-| **KOUYOM Bikala** | Développeur Mobile | Mobile | ESA |
-| **QUENUM Abla Anne-Marie** | Développeuse Mobile | Mobile | IAI Togo  |
+| Membre                                      | Rôle                           | Sous-équipe | Établissement        |
+| ------------------------------------------- | ------------------------------- | ------------ | --------------------- |
+| **EDOH BEDI Komi Godwin**             | Développeur Web + Architecture | Web          | EPL                   |
+| **FOLIKPO-AWUTE Dzogoedzikpe Sophos** | Développeur Web                | Web          | Lomé Business School |
+| **KOUYOM Bikala**                     | Développeur Mobile             | Mobile       | ESA                   |
+| **QUENUM Abla Anne-Marie**            | Développeuse Mobile            | Mobile       | IAI Togo              |
 
 ### 1.2 Mission de ChainCacao
 
@@ -105,73 +106,73 @@ Sans traçabilité blockchain, le Togo perd l'accès au marché européen (princ
 
 ### 2.1 Couche Blockchain
 
-| Élément | Technologie | Version | Remarque |
-|---------|-------------|---------|----------|
-| Réseau testnet | Polygon Amoy | — | Successeur de Mumbai (déprécié 2024). RPC : `https://rpc-amoy.polygon.technology` |
-| Réseau prod (V2) | Polygon PoS Mainnet | — | Migration prévue après hackathon |
-| Smart Contracts | Solidity | ^0.8.20 | Pas de version inférieure |
-| Framework dev | Hardhat | Dernière | Tests + déploiement |
-| Bibliothèque | OpenZeppelin Contracts | ^5.0 | ERC-721, AccessControl |
-| Standard NFT | ERC-721 | — | Chaque lot = NFT unique non-fongible |
-| Wallet | MetaMask + WalletConnect v2 | — | Compatible mobile + desktop |
+| Élément         | Technologie                 | Version   | Remarque                                                                              |
+| ----------------- | --------------------------- | --------- | ------------------------------------------------------------------------------------- |
+| Réseau testnet   | Polygon Amoy                | —        | Successeur de Mumbai (déprécié 2024). RPC :`https://rpc-amoy.polygon.technology` |
+| Réseau prod (V2) | Polygon PoS Mainnet         | —        | Migration prévue après hackathon                                                    |
+| Smart Contracts   | Solidity                    | ^0.8.20   | Pas de version inférieure                                                            |
+| Framework dev     | Hardhat                     | Dernière | Tests + déploiement                                                                  |
+| Bibliothèque     | OpenZeppelin Contracts      | ^5.0      | ERC-721, AccessControl                                                                |
+| Standard NFT      | ERC-721                     | —        | Chaque lot = NFT unique non-fongible                                                  |
+| Wallet            | MetaMask + WalletConnect v2 | —        | Compatible mobile + desktop                                                           |
 
 ### 2.2 Couche Web (binôme Komi + Sophos)
 
-| Couche | Technologie | Version | Remarque |
-|--------|-------------|---------|----------|
-| Framework | React.js | 19.x | Avec Vite 8.x comme bundler |
-| Styles | Tailwind CSS | 4.x | Plugin `@tailwindcss/vite` (palette via `@theme {}` dans `index.css`) |
-| Animations | Framer Motion | Dernière | Légères uniquement |
-| Routing | React Router DOM | 7.x | Navigation entre pages |
-| Web3 | ethers.js | v6 | Interaction smart contract |
-| Wallet Connect | `@web3modal/wagmi` + `wagmi` + `viem` | Dernière | Connexion wallet multi-provider |
-| Cartographie | Leaflet + `react-leaflet` | Dernière | OpenStreetMap (libre, pas de Google Maps) |
-| QR Code génération | `qrcode.react` | Dernière | Génération côté client |
-| QR Code lecture | `html5-qrcode` | ^2.3.8 | Scan via webcam, import dynamique (lazy) |
-| Graphiques | `recharts` | ^3.8.1 | BarChart, PieChart donut pour dashboards |
-| Backend client | `@supabase/supabase-js` | v2 | Client Supabase |
-| Icônes | Lucide React | Dernière | SVG natif, léger, accessible |
-| Hébergement | Vercel | — | Déploiement continu depuis GitHub |
+| Couche               | Technologie                                 | Version   | Remarque                                                                    |
+| -------------------- | ------------------------------------------- | --------- | --------------------------------------------------------------------------- |
+| Framework            | React.js                                    | 19.x      | Avec Vite 8.x comme bundler                                                 |
+| Styles               | Tailwind CSS                                | 4.x       | Plugin `@tailwindcss/vite` (palette via `@theme {}` dans `index.css`) |
+| Animations           | Framer Motion                               | Dernière | Légères uniquement                                                        |
+| Routing              | React Router DOM                            | 7.x       | Navigation entre pages                                                      |
+| Web3                 | ethers.js                                   | v6        | Interaction smart contract                                                  |
+| Wallet Connect       | `@web3modal/wagmi` + `wagmi` + `viem` | Dernière | Connexion wallet multi-provider                                             |
+| Cartographie         | Leaflet +`react-leaflet`                  | Dernière | OpenStreetMap (libre, pas de Google Maps)                                   |
+| QR Code génération | `qrcode.react`                            | Dernière | Génération côté client                                                  |
+| QR Code lecture      | `html5-qrcode`                            | ^2.3.8    | Scan via webcam, import dynamique (lazy)                                    |
+| Graphiques           | `recharts`                                | ^3.8.1    | BarChart, PieChart donut pour dashboards                                    |
+| Backend client       | `@supabase/supabase-js`                   | v2        | Client Supabase                                                             |
+| Icônes              | Lucide React                                | Dernière | SVG natif, léger, accessible                                               |
+| Hébergement         | Vercel                                      | —        | Déploiement continu depuis GitHub                                          |
 
 ### 2.3 Couche Mobile (binôme Bikala + Anne-Marie)
 
-| Couche | Technologie | Version | Remarque |
-|--------|-------------|---------|----------|
-| Framework | Flutter SDK | 3.24+ | Stable channel |
-| Langage | Dart | 3.5+ | — |
-| State management | Provider | ^6.1 | Choix simple, suffisant pour MVP |
-| GPS/Géolocalisation | `geolocator` | ^12.0 | Précision sub-métrique |
-| Géocodage inverse | `geocoding` | ^3.0 | Nom commune/préfecture depuis coords |
-| Base locale | `sqflite` | ^2.3 | SQLite chiffré pour mode offline |
-| Chemin fichiers | `path_provider` | ^2.1 | Localisation DB locale |
-| Connectivité | `connectivity_plus` | ^6.0 | Détection 4G/Wi-Fi pour sync |
-| Web3 | `web3dart` | ^2.7 | Interaction Polygon depuis Flutter |
-| WalletConnect | `walletconnect_flutter_v2` | Dernière | Connexion wallet mobile |
-| Backend client | `supabase_flutter` | ^2.5 | Client Supabase Flutter |
-| QR Code | `qr_flutter` (génération) + `mobile_scanner` (lecture) | Dernière | — |
-| Cartographie | `flutter_map` | ^7.0 | Équivalent Leaflet pour Flutter |
-| Permissions | `permission_handler` | ^11.3 | Gestion permissions GPS, caméra |
-| Build cible | APK Android | — | Priorité absolue ; iOS si temps |
+| Couche               | Technologie                                                  | Version   | Remarque                              |
+| -------------------- | ------------------------------------------------------------ | --------- | ------------------------------------- |
+| Framework            | Flutter SDK                                                  | 3.24+     | Stable channel                        |
+| Langage              | Dart                                                         | 3.5+      | —                                    |
+| State management     | Provider                                                     | ^6.1      | Choix simple, suffisant pour MVP      |
+| GPS/Géolocalisation | `geolocator`                                               | ^12.0     | Précision sub-métrique              |
+| Géocodage inverse   | `geocoding`                                                | ^3.0      | Nom commune/préfecture depuis coords |
+| Base locale          | `sqflite`                                                  | ^2.3      | SQLite chiffré pour mode offline     |
+| Chemin fichiers      | `path_provider`                                            | ^2.1      | Localisation DB locale                |
+| Connectivité        | `connectivity_plus`                                        | ^6.0      | Détection 4G/Wi-Fi pour sync         |
+| Web3                 | `web3dart`                                                 | ^2.7      | Interaction Polygon depuis Flutter    |
+| WalletConnect        | `walletconnect_flutter_v2`                                 | Dernière | Connexion wallet mobile               |
+| Backend client       | `supabase_flutter`                                         | ^2.5      | Client Supabase Flutter               |
+| QR Code              | `qr_flutter` (génération) + `mobile_scanner` (lecture) | Dernière | —                                    |
+| Cartographie         | `flutter_map`                                              | ^7.0      | Équivalent Leaflet pour Flutter      |
+| Permissions          | `permission_handler`                                       | ^11.3     | Gestion permissions GPS, caméra      |
+| Build cible          | APK Android                                                  | —        | Priorité absolue ; iOS si temps      |
 
 ### 2.4 Couche Backend (mutualisée Web + Mobile)
 
-| Couche | Technologie | Version | Remarque |
-|--------|-------------|---------|----------|
-| BaaS | Supabase | Cloud Free Tier | PostgreSQL + PostGIS + Storage + Auth + Realtime |
-| Base de données | PostgreSQL | 15+ | Avec extension PostGIS pour géospatial |
-| Storage fichiers | Supabase Storage | — | GeoJSON, photos pesée, certificats |
-| Auth | Supabase Auth | — | Email/password + magic links pour démo |
-| Vercel Functions | Node.js | 20.x | Logique serveur (signature blockchain, génération PDF EUDR) |
-| Versioning | GitHub (dépôt privé) | — | github.com/Godwin-creator/chaincacao-monorepo |
+| Couche           | Technologie             | Version         | Remarque                                                      |
+| ---------------- | ----------------------- | --------------- | ------------------------------------------------------------- |
+| BaaS             | Supabase                | Cloud Free Tier | PostgreSQL + PostGIS + Storage + Auth + Realtime              |
+| Base de données | PostgreSQL              | 15+             | Avec extension PostGIS pour géospatial                       |
+| Storage fichiers | Supabase Storage        | —              | GeoJSON, photos pesée, certificats                           |
+| Auth             | Supabase Auth           | —              | Email/password + magic links pour démo                       |
+| Vercel Functions | Node.js                 | 20.x            | Logique serveur (signature blockchain, génération PDF EUDR) |
+| Versioning       | GitHub (dépôt privé) | —              | github.com/Godwin-creator/chaincacao-monorepo                 |
 
 ### 2.5 Outils partagés
 
-| Outil | Usage |
-|-------|-------|
-| **GitHub** | Versioning monorepo |
-| **WhatsApp groupe TG-16** | Coordination équipe quotidienne |
-| **Figma** | Maquettes UI partagées (optionnel) |
-| **Notion / Discord** | Documentation et discussion technique (optionnel) |
+| Outil                           | Usage                                             |
+| ------------------------------- | ------------------------------------------------- |
+| **GitHub**                | Versioning monorepo                               |
+| **WhatsApp groupe TG-16** | Coordination équipe quotidienne                  |
+| **Figma**                 | Maquettes UI partagées (optionnel)               |
+| **Notion / Discord**      | Documentation et discussion technique (optionnel) |
 
 ---
 
@@ -184,12 +185,14 @@ Sans traçabilité blockchain, le Togo perd l'accès au marché européen (princ
 ChainCacao n'est pas une ONG humanitaire. C'est une **solution tech-agricole** qui doit inspirer simultanément confiance technologique (importateurs UE, jurys hackathon) et proximité agricole (producteurs togolais).
 
 **À privilégier :**
+
 - Chaleur des couleurs terre pour les zones humaines (producteur, coopérative)
 - Fraîcheur tech (cyans, blancs) pour les zones blockchain et vérification
 - Or premium pour souligner valeur ajoutée EUDR et certifications
 - Lisibilité absolue (le site sera consulté en plein soleil sur smartphone bas de gamme)
 
 **À éviter :**
+
 - Néons agressifs, gradients criards
 - Glassmorphism excessif (lourd à charger sur 3G/4G dégradée)
 - Illustrations exotiques caricaturales (l'Afrique vue d'Europe)
@@ -253,29 +256,32 @@ ChainCacao n'est pas une ONG humanitaire. C'est une **solution tech-agricole** q
 
 ### 3.3 Logique d'usage de la palette
 
-| Contexte d'usage | Couleur dominante | Justification |
-|---|---|---|
-| Header / Navigation | Vert cacao foncé `#2D5F2E` | Identité, sérieux, ancrage agricole |
-| CTA primaire ("Enregistrer un lot") | Vert cacao `#4A9B3E` | Action positive, lié à la cabosse du logo |
-| CTA blockchain ("Vérifier sur chaîne") | Cyan `#2196C7` | Cohérence avec la chaîne du logo |
-| Badge "Conforme EUDR" | Or `#E8B547` | Certification, valeur premium |
-| Badge "Vérifié blockchain" | Cyan clair `#B3E5F2` | Tech, immuabilité |
-| Erreur / Fraude détectée | Rouge terre `#C1440E` | Alerte sans agressivité |
-| Fond sections "Producteur" | Crème `#F5F1E8` | Chaleur, terrain, humain |
-| Fond sections "Blockchain" | Blanc `#FDFCF8` + accents cyan | Tech, propreté |
+| Contexte d'usage                         | Couleur dominante                | Justification                               |
+| ---------------------------------------- | -------------------------------- | ------------------------------------------- |
+| Header / Navigation                      | Vert cacao foncé `#2D5F2E`    | Identité, sérieux, ancrage agricole       |
+| CTA primaire ("Enregistrer un lot")      | Vert cacao `#4A9B3E`           | Action positive, lié à la cabosse du logo |
+| CTA blockchain ("Vérifier sur chaîne") | Cyan `#2196C7`                 | Cohérence avec la chaîne du logo          |
+| Badge "Conforme EUDR"                    | Or `#E8B547`                   | Certification, valeur premium               |
+| Badge "Vérifié blockchain"             | Cyan clair `#B3E5F2`           | Tech, immuabilité                          |
+| Erreur / Fraude détectée               | Rouge terre `#C1440E`          | Alerte sans agressivité                    |
+| Fond sections "Producteur"               | Crème `#F5F1E8`               | Chaleur, terrain, humain                    |
+| Fond sections "Blockchain"               | Blanc `#FDFCF8` + accents cyan | Tech, propreté                             |
 
 ### 3.4 Logo ChainCacao
 
 **Composition :**
+
 - **Cabosse de cacao verte** au centre — agriculture, fraîcheur, Togo
 - **Chaîne hexagonale cyan** autour — blockchain, traçabilité immuable
 - **Forme hexagonale** — référence directe aux blocs blockchain
 
 **Fichiers disponibles :**
+
 - `logo-chaincacao-sans-fond.png` — version transparente (usage principal)
 - `logo-chaincacao-avec-fond-blanc.png` — version sur fond blanc (impression, documents)
 
 **Règles d'usage :**
+
 - **Formats requis** : SVG (priorité, à régénérer) + PNG 512px minimum
 - **Fond clair** → utiliser version sans fond
 - **Fond sombre** → utiliser version sur cercle blanc (à créer si besoin)
@@ -341,29 +347,29 @@ ChainCacao s'adresse à 3 types de publics très différents. Le ton doit s'adap
 
 ### 4.2 Tons par contexte
 
-| Contexte | Ton à adopter |
-|----------|---------------|
-| Page d'accueil (site vitrine) | Professionnel, démonstratif, ancré dans les chiffres (40 000 familles, 30-40 M$ pertes) |
-| Interface Agriculteur (mobile) | Simple, direct, en grands caractères, vocabulaire concret ("Photo du sac", "Position GPS") |
-| Interface Coopérative (web) | Clair, factuel, organisé, met l'accent sur la traçabilité visible |
-| Interface Transformateur (web) | Technique mais lisible, met l'accent sur la qualité (séchage, fermentation) |
-| Interface Exportateur (web) | Institutionnel, conforme, formel — c'est l'interface qui produit la déclaration EUDR officielle |
-| Interface Vérificateur UE (web public) | Anglais possible en V2 ; français V1 ; ton institutionnel européen, données factuelles |
-| Page "Comment ça marche" | Pédagogique, étape par étape, avec schémas |
+| Contexte                                | Ton à adopter                                                                                    |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Page d'accueil (site vitrine)           | Professionnel, démonstratif, ancré dans les chiffres (40 000 familles, 30-40 M$ pertes)         |
+| Interface Agriculteur (mobile)          | Simple, direct, en grands caractères, vocabulaire concret ("Photo du sac", "Position GPS")       |
+| Interface Coopérative (web)            | Clair, factuel, organisé, met l'accent sur la traçabilité visible                              |
+| Interface Transformateur (web)          | Technique mais lisible, met l'accent sur la qualité (séchage, fermentation)                     |
+| Interface Exportateur (web)             | Institutionnel, conforme, formel — c'est l'interface qui produit la déclaration EUDR officielle |
+| Interface Vérificateur UE (web public) | Anglais possible en V2 ; français V1 ; ton institutionnel européen, données factuelles         |
+| Page "Comment ça marche"               | Pédagogique, étape par étape, avec schémas                                                    |
 
 ### 4.3 Vocabulaire ChainCacao
 
-| À utiliser | À éviter |
-|------------|----------|
-| Lot | Batch, parcel |
-| Producteur, agriculteur | Fermier, paysan |
-| Coopérative | Coop, association |
+| À utiliser                               | À éviter                          |
+| ----------------------------------------- | ----------------------------------- |
+| Lot                                       | Batch, parcel                       |
+| Producteur, agriculteur                   | Fermier, paysan                     |
+| Coopérative                              | Coop, association                   |
 | Pisteur (interne) / Collecteur (officiel) | Intermédiaire, négociant informel |
-| Certificat EUDR | Conformité européenne |
-| Registre blockchain | Base de données décentralisée |
-| Hash de vérification | Empreinte cryptographique |
-| Parcelle géolocalisée | Champ GPS |
-| Transfert de propriété | Cession, vente |
+| Certificat EUDR                           | Conformité européenne             |
+| Registre blockchain                       | Base de données décentralisée    |
+| Hash de vérification                     | Empreinte cryptographique           |
+| Parcelle géolocalisée                   | Champ GPS                           |
+| Transfert de propriété                  | Cession, vente                      |
 
 ---
 
@@ -472,6 +478,7 @@ Adaptations critiques au contexte d'usage :
 > **Règle absolue :** ne JAMAIS mettre les fichiers GeoJSON, photos, ou documents complets sur la blockchain. Coût explosif et saturation.
 
 **On-chain (Polygon — immuable) :**
+
 - UUID du lot (identifiant unique)
 - Hash SHA-256 du fichier GeoJSON complet
 - Hash SHA-256 des photos de pesée
@@ -481,6 +488,7 @@ Adaptations critiques au contexte d'usage :
 - Historique complet des transferts (chaîne d'événements)
 
 **Off-chain (Supabase — modifiable contrôlé) :**
+
 - Fichiers GeoJSON complets (polygones de parcelles)
 - Photos de pesée et de la cabosse
 - Certificats Bio/Fairtrade scannés (PDF)
@@ -780,12 +788,12 @@ CREATE POLICY "Verifier sees exported lots"
 
 ### 8.3 Buckets Supabase Storage
 
-| Bucket | Contenu | Accès |
-|--------|---------|-------|
-| `geojson` | Fichiers GeoJSON des parcelles | Lecture publique, écriture authentifiée |
-| `photos` | Photos pesée, cabosse, transformation | Lecture publique, écriture par propriétaire |
-| `certificates` | Certificats EUDR PDF générés | Lecture publique (vérification UE), écriture serveur uniquement |
-| `documents` | Certificats Bio/Fairtrade scannés | Lecture authentifiée, écriture authentifiée |
+| Bucket           | Contenu                                | Accès                                                            |
+| ---------------- | -------------------------------------- | ----------------------------------------------------------------- |
+| `geojson`      | Fichiers GeoJSON des parcelles         | Lecture publique, écriture authentifiée                         |
+| `photos`       | Photos pesée, cabosse, transformation | Lecture publique, écriture par propriétaire                     |
+| `certificates` | Certificats EUDR PDF générés        | Lecture publique (vérification UE), écriture serveur uniquement |
+| `documents`    | Certificats Bio/Fairtrade scannés     | Lecture authentifiée, écriture authentifiée                    |
 
 ---
 
@@ -796,6 +804,7 @@ CREATE POLICY "Verifier sees exported lots"
 ### 9.1 Authentification
 
 Toutes les requêtes (sauf vérification publique) requièrent :
+
 ```
 Authorization: Bearer <supabase_access_token>
 ```
@@ -803,9 +812,11 @@ Authorization: Bearer <supabase_access_token>
 ### 9.2 Endpoints API
 
 #### POST `/api/lots/register`
+
 **Créer un nouveau lot (Producteur)**
 
 **Request Body :**
+
 ```json
 {
   "parcelId": "uuid-string",
@@ -824,6 +835,7 @@ Authorization: Bearer <supabase_access_token>
 ```
 
 **Response 201 :**
+
 ```json
 {
   "lotId": "uuid-string",
@@ -835,15 +847,18 @@ Authorization: Bearer <supabase_access_token>
 ```
 
 **Notes :**
+
 - `blockchainTokenId` et `blockchainTxHash` sont `null` au moment de la création offline ; ils sont remplis après synchronisation
 - L'API renvoie immédiatement même si la blockchain n'est pas encore mise à jour (sync asynchrone)
 
 ---
 
 #### POST `/api/lots/transfer`
+
 **Transférer un lot vers un autre acteur**
 
 **Request Body :**
+
 ```json
 {
   "lotId": "uuid-string",
@@ -857,6 +872,7 @@ Authorization: Bearer <supabase_access_token>
 ```
 
 **Response 200 :**
+
 ```json
 {
   "transferId": "uuid-string",
@@ -868,9 +884,11 @@ Authorization: Bearer <supabase_access_token>
 ---
 
 #### GET `/api/lots/:lotId`
+
 **Récupérer les détails complets d'un lot**
 
 **Response 200 :**
+
 ```json
 {
   "id": "uuid-string",
@@ -901,9 +919,11 @@ Authorization: Bearer <supabase_access_token>
 ---
 
 #### GET `/api/lots/:lotId/verify`
+
 **Vérification publique (vérificateur UE, scan QR)**
 
 **Response 200 :**
+
 ```json
 {
   "isValid": true,
@@ -926,9 +946,11 @@ Authorization: Bearer <supabase_access_token>
 ---
 
 #### POST `/api/parcels/register`
+
 **Enregistrer une nouvelle parcelle GPS**
 
 **Request Body :**
+
 ```json
 {
   "name": "Parcelle Nord",
@@ -946,6 +968,7 @@ Authorization: Bearer <supabase_access_token>
 ```
 
 **Validation serveur :**
+
 - Système de référence WGS84 (EPSG:4326) obligatoire
 - Polygone fermé (premier point = dernier point)
 - Au moins 4 points pour un polygone valide
@@ -953,6 +976,7 @@ Authorization: Bearer <supabase_access_token>
 - Précision minimum 6 décimales sur lat/long
 
 **Response 201 :**
+
 ```json
 {
   "parcelId": "uuid-string",
@@ -964,9 +988,11 @@ Authorization: Bearer <supabase_access_token>
 ---
 
 #### POST `/api/eudr/generate-certificate`
+
 **Générer un certificat EUDR pour un lot exporté (Exportateur)**
 
 **Request Body :**
+
 ```json
 {
   "lotId": "uuid-string"
@@ -974,6 +1000,7 @@ Authorization: Bearer <supabase_access_token>
 ```
 
 **Response 200 :**
+
 ```json
 {
   "certificateId": "uuid-string",
@@ -986,9 +1013,11 @@ Authorization: Bearer <supabase_access_token>
 ---
 
 #### POST `/api/sync/pending`
+
 **Synchroniser les lots créés offline (Mobile)**
 
 **Request Body :**
+
 ```json
 {
   "pendingLots": [
@@ -1001,6 +1030,7 @@ Authorization: Bearer <supabase_access_token>
 ```
 
 **Response 200 :**
+
 ```json
 {
   "synced": [
@@ -1016,18 +1046,18 @@ Authorization: Bearer <supabase_access_token>
 
 ### 9.3 Codes d'erreur standard
 
-| Code HTTP | Signification |
-|-----------|---------------|
-| 200 | Succès |
-| 201 | Créé |
-| 400 | Données invalides (validation GeoJSON, etc.) |
-| 401 | Non authentifié |
-| 403 | Non autorisé (rôle incorrect) |
-| 404 | Ressource introuvable |
-| 409 | Conflit (lot déjà transféré, etc.) |
-| 422 | Données EUDR non conformes |
-| 500 | Erreur serveur |
-| 503 | Blockchain indisponible (réessayer plus tard) |
+| Code HTTP | Signification                                  |
+| --------- | ---------------------------------------------- |
+| 200       | Succès                                        |
+| 201       | Créé                                         |
+| 400       | Données invalides (validation GeoJSON, etc.)  |
+| 401       | Non authentifié                               |
+| 403       | Non autorisé (rôle incorrect)                |
+| 404       | Ressource introuvable                          |
+| 409       | Conflit (lot déjà transféré, etc.)         |
+| 422       | Données EUDR non conformes                    |
+| 500       | Erreur serveur                                 |
+| 503       | Blockchain indisponible (réessayer plus tard) |
 
 ### 9.4 Format des erreurs
 
@@ -1162,6 +1192,7 @@ CREATE TABLE sync_queue (
 ### 11.1 Sous-équipe Web (Komi + Sophos)
 
 **Périmètre :**
+
 - Site vitrine public ChainCacao
 - Interface Coopérative (réception lots, vérification poids)
 - Interface Transformateur (séchage, fermentation, qualité)
@@ -1172,12 +1203,14 @@ CREATE TABLE sync_queue (
 - Vercel Functions (logique serveur, signatures blockchain)
 
 **Komi :**
+
 - Architecture globale, smart contracts, intégration blockchain
 - Coordination avec sous-équipe mobile
 - Vercel Functions critiques (`register-lot`, `transfer-lot`, `verify-lot`)
 - Setup Supabase (tables, RLS, buckets)
 
 **Sophos :**
+
 - Pages web (site vitrine, dashboards des 4 acteurs web)
 - Composants UI réutilisables (Tailwind + Framer Motion)
 - Intégration Leaflet pour cartes
@@ -1186,6 +1219,7 @@ CREATE TABLE sync_queue (
 ### 11.2 Sous-équipe Mobile (Bikala + Anne-Marie)
 
 **Périmètre :**
+
 - Application Flutter Android (APK) avec mode offline-first
 - Interface Agriculteur (création lots, capture GPS, photos)
 - Interface Pisteur/Collecteur (collecte terrain, transferts initiaux)
@@ -1194,12 +1228,14 @@ CREATE TABLE sync_queue (
 - Capture GPS haute précision
 
 **Bikala :**
+
 - Architecture Flutter, services (LotService, SyncService)
 - Intégration `geolocator` et capture GPS
 - SQLite local et stratégie de sync
 - Tests sur appareils Android réels
 
 **Anne-Marie :**
+
 - Interfaces utilisateur Flutter (écrans agriculteur, collecteur)
 - Composants visuels (formulaires, cards, loaders offline)
 - Intégration `mobile_scanner` pour QR codes
@@ -1434,6 +1470,7 @@ chaincacao-monorepo/
 Format : `<type>(<scope>): <description>`
 
 **Types autorisés :**
+
 - `feat` : nouvelle fonctionnalité
 - `fix` : correction de bug
 - `style` : formatage, palette, UI
@@ -1443,6 +1480,7 @@ Format : `<type>(<scope>): <description>`
 - `test` : ajout/modification de tests
 
 **Scopes recommandés :**
+
 - `web` : changements web
 - `mobile` : changements mobile
 - `contracts` : smart contracts
@@ -1451,6 +1489,7 @@ Format : `<type>(<scope>): <description>`
 - `shared` : code partagé
 
 **Exemples :**
+
 ```
 feat(mobile): add GPS capture screen for new lot
 fix(api): correct GeoJSON validation for parcels < 4ha
@@ -1529,14 +1568,14 @@ POLYGONSCAN_API_KEY=                            # Pour vérifier le contrat sur 
 
 ### 14.3 Statut des variables par environnement
 
-| Variable | Local Dev | Vercel Prod | Mobile Build |
-|----------|:---------:|:-----------:|:------------:|
-| `SUPABASE_URL` | ⏳ | ⏳ | ⏳ |
-| `SUPABASE_ANON_KEY` | ⏳ | ⏳ | ⏳ |
-| `SUPABASE_SERVICE_ROLE_KEY` | ⏳ | ⏳ | — |
-| `POLYGON_AMOY_RPC` | ⏳ | ⏳ | ⏳ |
-| `CHAINCACAO_WALLET_PRIVATE_KEY` | ⏳ | ⏳ | — |
-| `CHAINCACAO_CONTRACT_ADDRESS` | ⏳ | ⏳ | ⏳ |
+| Variable                          | Local Dev | Vercel Prod | Mobile Build |
+| --------------------------------- | :-------: | :---------: | :----------: |
+| `SUPABASE_URL`                  |    ✅     |     ✅     |      ⏳      |
+| `SUPABASE_ANON_KEY`             |    ✅     |     ✅     |      ⏳      |
+| `SUPABASE_SERVICE_ROLE_KEY`     |    ✅     |     ✅     |      —       |
+| `POLYGON_AMOY_RPC`              |    ✅     |     ✅     |      ⏳      |
+| `CHAINCACAO_WALLET_PRIVATE_KEY` |    ✅     |     ✅     |      —       |
+| `CHAINCACAO_CONTRACT_ADDRESS`   |    ✅     |     ✅     |      ⏳      |
 
 ---
 
@@ -1547,6 +1586,7 @@ POLYGONSCAN_API_KEY=                            # Pour vérifier le contrat sur 
 **Profil utilisateur :** producteur de cacao/café à Wawa, Akébou, etc. Smartphone Android d'entrée de gamme. Souvent en zone à connectivité fluctuante. Niveau technique : faible.
 
 **Fonctionnalités essentielles :**
+
 1. **Connexion** : email + mot de passe (assistance possible par coopérative)
 2. **Tableau de bord** : voir ses parcelles enregistrées, ses lots créés, statut sync
 3. **Enregistrer une parcelle** :
@@ -1565,6 +1605,7 @@ POLYGONSCAN_API_KEY=                            # Pour vérifier le contrat sur 
 6. **Statut de synchronisation** : badge permanent + bouton "Synchroniser maintenant"
 
 **Spécificités UX :**
+
 - Écrans en grandes polices (corps minimum 18 sp)
 - Boutons primaires en `cacao-green` `#4A9B3E`
 - Banner offline orange en haut quand déconnecté
@@ -1575,6 +1616,7 @@ POLYGONSCAN_API_KEY=                            # Pour vérifier le contrat sur 
 **Profil utilisateur :** gestionnaire de coopérative à Kpalimé ou Atakpamé. PC ou tablette. Connexion 4G stable. Niveau technique : moyen.
 
 **Fonctionnalités essentielles :**
+
 1. **Tableau de bord** : lots reçus en attente, lots vérifiés, statistiques mensuelles
 2. **Réception d'un lot** :
    - Scan QR code du lot apporté par l'agriculteur ou pisteur
@@ -1587,6 +1629,7 @@ POLYGONSCAN_API_KEY=                            # Pour vérifier le contrat sur 
 5. **Transfert vers transformateur** : sélection de plusieurs lots, transfert groupé
 
 **Spécificités UX :**
+
 - Layout dashboard avec sidebar gauche (navigation)
 - Couleurs principales : crème `#F5F1E8` (zone agricole) + accents cyan pour blockchain
 - Tableaux denses avec recherche et filtres
@@ -1596,6 +1639,7 @@ POLYGONSCAN_API_KEY=                            # Pour vérifier le contrat sur 
 **Profil utilisateur :** responsable d'unité de transformation (séchage, fermentation). PC. Connexion stable.
 
 **Fonctionnalités essentielles :**
+
 1. **Tableau de bord** : lots en cours de transformation, lots prêts pour exportateur
 2. **Réception lot** : depuis coopérative
 3. **Saisie données qualité** :
@@ -1607,6 +1651,7 @@ POLYGONSCAN_API_KEY=                            # Pour vérifier le contrat sur 
 5. **Historique transformations** : statistiques par batch, par espèce
 
 **Spécificités UX :**
+
 - Interface technique mais lisible
 - Couleurs principales : brun chocolat `#8B5E3C` + verts (qualité)
 - Saisies numériques avec validation stricte
@@ -1616,6 +1661,7 @@ POLYGONSCAN_API_KEY=                            # Pour vérifier le contrat sur 
 **Profil utilisateur :** responsable export à Lomé (CACAOMAX, COCOLMEX, ETC Agro, GEBANA). PC. Maîtrise des exigences EUDR.
 
 **Fonctionnalités essentielles :**
+
 1. **Tableau de bord** : lots prêts pour export, certificats EUDR générés
 2. **Sélection lots pour export** : sélection multiple
 3. **Génération certificat EUDR** :
@@ -1632,6 +1678,7 @@ POLYGONSCAN_API_KEY=                            # Pour vérifier le contrat sur 
 5. **Visualisation cartographique** : superposition de toutes les parcelles exportées
 
 **Spécificités UX :**
+
 - Interface institutionnelle, formelle
 - Couleurs principales : vert foncé `#2D5F2E` + or `#E8B547` (premium, EUDR)
 - Génération PDF longue (2-5s) → loader explicite
@@ -1641,6 +1688,7 @@ POLYGONSCAN_API_KEY=                            # Pour vérifier le contrat sur 
 **Profil utilisateur :** importateur européen, autorité douanière UE, organisme de certification. Anglais ou français. Niveau technique : élevé.
 
 **Fonctionnalités essentielles :**
+
 1. **Page de vérification publique** : `/verify/:lotId` (accessible via QR code)
    - **Aucune authentification requise** (vérification publique)
    - Affichage des informations du lot
@@ -1655,6 +1703,7 @@ POLYGONSCAN_API_KEY=                            # Pour vérifier le contrat sur 
    - Marquage "Lot vérifié EUDR" (transaction blockchain dédiée)
 
 **Spécificités UX :**
+
 - Interface ultra-claire, peu de couleurs
 - Affichage des hash en `JetBrains Mono`
 - Liens externes sortants vers Polygonscan, OpenStreetMap
@@ -1745,6 +1794,7 @@ POLYGONSCAN_API_KEY=                            # Pour vérifier le contrat sur 
 **Durée totale du flux démontré : 5-7 minutes**
 
 **Acteurs simulés :**
+
 - 1 producteur (mobile sur smartphone réel projeté)
 - 1 coopérative (web sur écran 1)
 - 1 transformateur (web sur écran 2)
@@ -1825,13 +1875,13 @@ function validateGeoJsonForEUDR(geojson, areaHectares) {
 
 Le standard GS1 EPCIS structure les événements de la supply chain :
 
-| Question | Champ EPCIS | Exemple ChainCacao |
-|----------|-------------|---------------------|
-| **Quoi** (What) | EPC / GTIN | UUID du lot ChainCacao |
-| **Où** (Where) | Read Point / GLN | Coordonnées parcelle ou GLN coopérative |
-| **Quand** (When) | EventTime | Timestamp UTC de l'événement |
-| **Pourquoi** (Why) | BizStep | "Harvesting", "Aggregation", "Inspection" |
-| **Qui** (Who) | Source / Destination | Identifiants des acteurs |
+| Question                 | Champ EPCIS          | Exemple ChainCacao                        |
+| ------------------------ | -------------------- | ----------------------------------------- |
+| **Quoi** (What)    | EPC / GTIN           | UUID du lot ChainCacao                    |
+| **Où** (Where)    | Read Point / GLN     | Coordonnées parcelle ou GLN coopérative |
+| **Quand** (When)   | EventTime            | Timestamp UTC de l'événement            |
+| **Pourquoi** (Why) | BizStep              | "Harvesting", "Aggregation", "Inspection" |
+| **Qui** (Who)      | Source / Destination | Identifiants des acteurs                  |
 
 ChainCacao adopte cette structure dès la V1 pour faciliter l'interopérabilité future avec les systèmes des importateurs européens.
 
@@ -1866,6 +1916,7 @@ https://chaincacao.vercel.app/verify/<lot-uuid>
 ```
 
 **Avantages de cette approche :**
+
 - N'importe quel scanner QR mobile (pas besoin d'app dédiée)
 - L'URL est lisible et partageable par d'autres canaux
 - Ouverture directe dans le navigateur web
@@ -1938,28 +1989,28 @@ QrImageView(
 
 ### 19.1 Ce qui DOIT être livré (obligatoire)
 
-| # | Élément | Sous-équipe | Statut |
-|---|---------|-------------|--------|
-| 1 | Smart contract `ChainCacao.sol` déployé sur Polygon Amoy | Web (Komi) | ✅ |
-| 2 | Tables Supabase + RLS configurées | Web (Komi) | ✅ |
-| 3 | Site vitrine public (Home, About, How It Works) | Web (Sophos) | ✅ |
-| 4 | Page de vérification publique `/verify/:lotId` | Web (Sophos) | ✅ |
-| 5 | Auth Supabase (login/signup avec rôles) | Web + Mobile | ✅ Web · 🚧 Mobile (Login ✅) |
-| 6 | Dashboard Coopérative + réception lot + transferts | Web (Sophos) | ✅ |
-| 7 | Dashboard Transformateur + saisie qualité | Web (Sophos) | ✅ |
-| 8 | Dashboard Exportateur + génération certificat EUDR | Web (Sophos + Komi) | ⏳ |
-| 9 | Vercel Functions critiques (register-lot, transfer, verify) | Web (Komi) | ⏳ |
-| 10 | App Flutter Android : login + dashboard producteur | Mobile (Bikala) | ✅ |
-| 11 | App Flutter Android : création lot + capture GPS + photos | Mobile (Anne-Marie) | ✅ |
-| 12 | App Flutter Android : enregistrement parcelle GPS | Mobile (Anne-Marie) | ✅ |
-| 13 | App Flutter Android : mode offline + SyncService | Mobile (Bikala) | ✅ |
-| 14 | Génération QR Code (web + mobile) | Web + Mobile | ✅ Web · ✅ Mobile |
-| 15 | Lecture QR Code (web + mobile) | Web + Mobile | ✅ Web (html5-qrcode, lazy) · ✅ Mobile |
-| 16 | APK Android signé téléchargeable | Mobile | ⏳ |
-| 17 | Déploiement Vercel fonctionnel | Web (Komi) | ⏳ |
-| 18 | Documentation technique (README, API docs) | Tous | ⏳ |
-| 19 | Guide utilisateur producteur (FR, illustré) | Tous | ⏳ |
-| 20 | Pitch deck 10 min + script démo live | Tous | ⏳ |
+| #  | Élément                                                    | Sous-équipe        | Statut                                   |
+| -- | ------------------------------------------------------------ | ------------------- | ---------------------------------------- |
+| 1  | Smart contract `ChainCacao.sol` déployé sur Polygon Amoy | Web (Komi)          | ✅                                       |
+| 2  | Tables Supabase + RLS configurées                           | Web (Komi)          | ✅                                       |
+| 3  | Site vitrine public (Home, About, How It Works)              | Web (Sophos)        | ✅                                       |
+| 4  | Page de vérification publique `/verify/:lotId`            | Web (Sophos)        | ✅                                       |
+| 5  | Auth Supabase (login/signup avec rôles)                     | Web + Mobile        | ✅ Web · 🚧 Mobile (Login ✅)           |
+| 6  | Dashboard Coopérative + réception lot + transferts         | Web (Sophos)        | ✅                                       |
+| 7  | Dashboard Transformateur + saisie qualité                   | Web (Sophos)        | ✅                                       |
+| 8  | Dashboard Exportateur + génération certificat EUDR         | Web (Sophos + Komi) | ✅                                       |
+| 9  | Vercel Functions critiques (register-lot, transfer, verify)  | Web (Komi)          | ✅                                       |
+| 10 | App Flutter Android : login + dashboard producteur           | Mobile (Bikala)     | ✅                                       |
+| 11 | App Flutter Android : création lot + capture GPS + photos   | Mobile (Anne-Marie) | ✅                                       |
+| 12 | App Flutter Android : enregistrement parcelle GPS            | Mobile (Anne-Marie) | ✅                                       |
+| 13 | App Flutter Android : mode offline + SyncService             | Mobile (Bikala)     | ✅                                       |
+| 14 | Génération QR Code (web + mobile)                          | Web + Mobile        | ✅ Web · ✅ Mobile                      |
+| 15 | Lecture QR Code (web + mobile)                               | Web + Mobile        | ✅ Web (html5-qrcode, lazy) · ✅ Mobile |
+| 16 | APK Android signé téléchargeable                          | Mobile              | ⏳                                       |
+| 17 | Déploiement Vercel fonctionnel                              | Web (Komi)          | ✅                                       |
+| 18 | Documentation technique (README, API docs)                   | Tous                | ⏳                                       |
+| 19 | Guide utilisateur producteur (FR, illustré)                 | Tous                | ⏳                                       |
+| 20 | Pitch deck 10 min + script démo live                        | Tous                | ⏳                                       |
 
 ### 19.2 Ce qui peut être simulé/mocké pour la démo
 
@@ -1986,13 +2037,13 @@ QrImageView(
 
 ### 20.1 Découpage du pitch
 
-| Temps | Section | Intervenant | Contenu |
-|-------|---------|-------------|---------|
-| 0:00 - 1:00 | **Hook** | Komi | Le problème : 40 000 familles, EUDR, 30-40 M$ pertes |
-| 1:00 - 2:00 | **Solution** | Komi | Présentation ChainCacao + logo + slogan |
-| 2:00 - 8:00 | **Démo live 5 acteurs** | Toute l'équipe | Flux complet (voir §16.2) |
-| 8:00 - 9:00 | **Impact + différenciation** | Anne-Marie | ODD, comparaison concurrents |
-| 9:00 - 10:00 | **Plan de déploiement** | Bikala | Phase pilote Wawa, partenariats CCFCC |
+| Temps        | Section                             | Intervenant     | Contenu                                               |
+| ------------ | ----------------------------------- | --------------- | ----------------------------------------------------- |
+| 0:00 - 1:00  | **Hook**                      | Komi            | Le problème : 40 000 familles, EUDR, 30-40 M$ pertes |
+| 1:00 - 2:00  | **Solution**                  | Komi            | Présentation ChainCacao + logo + slogan              |
+| 2:00 - 8:00  | **Démo live 5 acteurs**      | Toute l'équipe | Flux complet (voir §16.2)                            |
+| 8:00 - 9:00  | **Impact + différenciation** | Anne-Marie      | ODD, comparaison concurrents                          |
+| 9:00 - 10:00 | **Plan de déploiement**      | Bikala          | Phase pilote Wawa, partenariats CCFCC                 |
 
 ### 20.2 Découpage de la démo live (6 minutes)
 
@@ -2055,20 +2106,20 @@ QrImageView(
 
 ## 21. ROADMAP V2 (EXCLUS DU MVP)
 
-| Fonctionnalité | Priorité V2 | Effort estimé |
-|----------------|-------------|---------------|
-| Wallets personnels par acteur | Haute | 2-3 semaines |
-| Application iOS | Haute | 2 semaines |
-| Détection déforestation auto (Global Forest Watch API) | Haute | 3 semaines |
-| Soumission directe à TRACES UE | Haute | 2 semaines |
-| Paiements crypto entre acteurs (USDC/USDT) | Moyenne | 4 semaines |
-| Multi-langues (anglais, ewé, mina) | Moyenne | 1 semaine |
-| Notifications push (lots, alertes) | Moyenne | 1 semaine |
-| Dashboard analytique CCFCC (Ministère) | Moyenne | 2 semaines |
-| Intégration GS1 EPCIS complète | Basse | 3 semaines |
-| Module formation utilisateurs intégré | Basse | 1 semaine |
-| Marketplace acheteurs/exportateurs | Basse | 4 semaines |
-| Migration Polygon Mainnet (production) | Haute | 1 semaine |
+| Fonctionnalité                                          | Priorité V2 | Effort estimé |
+| -------------------------------------------------------- | ------------ | -------------- |
+| Wallets personnels par acteur                            | Haute        | 2-3 semaines   |
+| Application iOS                                          | Haute        | 2 semaines     |
+| Détection déforestation auto (Global Forest Watch API) | Haute        | 3 semaines     |
+| Soumission directe à TRACES UE                          | Haute        | 2 semaines     |
+| Paiements crypto entre acteurs (USDC/USDT)               | Moyenne      | 4 semaines     |
+| Multi-langues (anglais, ewé, mina)                      | Moyenne      | 1 semaine      |
+| Notifications push (lots, alertes)                       | Moyenne      | 1 semaine      |
+| Dashboard analytique CCFCC (Ministère)                  | Moyenne      | 2 semaines     |
+| Intégration GS1 EPCIS complète                         | Basse        | 3 semaines     |
+| Module formation utilisateurs intégré                  | Basse        | 1 semaine      |
+| Marketplace acheteurs/exportateurs                       | Basse        | 4 semaines     |
+| Migration Polygon Mainnet (production)                   | Haute        | 1 semaine      |
 
 ---
 
@@ -2076,49 +2127,49 @@ QrImageView(
 
 ### 22.1 Décisions actées
 
-| Décision | Choix | Date | Justification |
-|----------|-------|------|---------------|
-| Blockchain | Polygon PoS (Amoy testnet) | Nov 2026 | EVM, écosystème mature, frais faibles, MetaMask compatible |
-| Stockage off-chain | Supabase | Nov 2026 | PostgreSQL + PostGIS natif, Auth + Storage intégrés |
-| Stack mobile | Flutter | Nov 2026 | Offline-first robuste, GPS rapide, performances natives |
-| Acteurs simulés démo | 5 (Producteur, Coopérative, Transformateur, Exportateur, Vérificateur UE) | Nov 2026 | Démonstration valeur de bout en bout |
-| Dépôt GitHub | `chaincacao-monorepo` (monorepo) | Nov 2026 | Cohérence + facilité partage `shared/` |
-| Domaine | Vercel-only (`chaincacao.vercel.app`) | Nov 2026 | Pas de coût de domaine pour hackathon |
-| Langue interface | Français exclusivement | Nov 2026 | Public togolais + jury MIABE |
-| Palette | Verts cacao + cyans blockchain + ors terre | Nov 2026 | Inspirée du logo officiel |
-| Typographies | Plus Jakarta Sans + Inter + JetBrains Mono | Nov 2026 | Modernité tech-agricole, lisibilité, données techniques |
-| Wallet utilisateur V1 | Wallet maître unique ChainCacao | Nov 2026 | Simplifie UX (pas de gas pour utilisateurs) |
+| Décision              | Choix                                                                       | Date     | Justification                                                |
+| ---------------------- | --------------------------------------------------------------------------- | -------- | ------------------------------------------------------------ |
+| Blockchain             | Polygon PoS (Amoy testnet)                                                  | Nov 2026 | EVM, écosystème mature, frais faibles, MetaMask compatible |
+| Stockage off-chain     | Supabase                                                                    | Nov 2026 | PostgreSQL + PostGIS natif, Auth + Storage intégrés        |
+| Stack mobile           | Flutter                                                                     | Nov 2026 | Offline-first robuste, GPS rapide, performances natives      |
+| Acteurs simulés démo | 5 (Producteur, Coopérative, Transformateur, Exportateur, Vérificateur UE) | Nov 2026 | Démonstration valeur de bout en bout                        |
+| Dépôt GitHub         | `chaincacao-monorepo` (monorepo)                                          | Nov 2026 | Cohérence + facilité partage `shared/`                   |
+| Domaine                | Vercel-only (`chaincacao.vercel.app`)                                     | Nov 2026 | Pas de coût de domaine pour hackathon                       |
+| Langue interface       | Français exclusivement                                                     | Nov 2026 | Public togolais + jury MIABE                                 |
+| Palette                | Verts cacao + cyans blockchain + ors terre                                  | Nov 2026 | Inspirée du logo officiel                                   |
+| Typographies           | Plus Jakarta Sans + Inter + JetBrains Mono                                  | Nov 2026 | Modernité tech-agricole, lisibilité, données techniques   |
+| Wallet utilisateur V1  | Wallet maître unique ChainCacao                                            | Nov 2026 | Simplifie UX (pas de gas pour utilisateurs)                  |
 
 ### 22.1 Décisions actées (complément Sessions 1-9)
 
-| Décision | Choix | Date | Justification |
-|----------|-------|------|---------------|
-| Recharts pour graphiques | `recharts ^3.8.1` | Mai 2026 | BarChart + PieChart donut, bundle acceptable |
-| html5-qrcode (lazy) | Import dynamique `Html5QrcodeScanner` | Mai 2026 | Évite d'alourdir le bundle initial |
-| Pattern mock/Supabase | try Supabase → catch → fallback mock | Mai 2026 | Démo fonctionnelle même sans tables configurées |
-| Routes coopérative | `/cooperative`, `/cooperative/lots-received`, `/cooperative/transfer-lot` | Mai 2026 | Nommage final confirmé dans App.jsx |
-| Route transfert | `/cooperative/transfer-lot` (pas `/cooperative/transfer`) | Mai 2026 | Correction par rapport à spec initiale |
-| SidebarContent module-level | Défini hors du composant Layout | Mai 2026 | Évite unmount/remount React à chaque re-render |
-| Modal bottom-sheet mobile | `AnimatePresence` + `motion.aside` slide-up | Mai 2026 | UX mobile-first pour terrain (tablette/smartphone) |
-| SelectionSummary sticky | Sidebar desktop + bottom-bar fixe mobile | Mai 2026 | Accès permanent au récapitulatif pendant sélection |
-| Guard `beforeunload` | Actif si sélection lots > 0 non confirmée | Mai 2026 | Éviter perte de sélection par navigation accidentelle |
-| Historique transferts lazy | Chargé uniquement au premier switch d'onglet | Mai 2026 | Optimisation réseau/Supabase |
-| Pipeline transformateur | Composant `ProcessingPipeline` autonome | Mai 2026 | Réutilisable sur page saisie qualité |
+| Décision                   | Choix                                                                           | Date     | Justification                                           |
+| --------------------------- | ------------------------------------------------------------------------------- | -------- | ------------------------------------------------------- |
+| Recharts pour graphiques    | `recharts ^3.8.1`                                                             | Mai 2026 | BarChart + PieChart donut, bundle acceptable            |
+| html5-qrcode (lazy)         | Import dynamique `Html5QrcodeScanner`                                         | Mai 2026 | Évite d'alourdir le bundle initial                     |
+| Pattern mock/Supabase       | try Supabase → catch → fallback mock                                          | Mai 2026 | Démo fonctionnelle même sans tables configurées      |
+| Routes coopérative         | `/cooperative`, `/cooperative/lots-received`, `/cooperative/transfer-lot` | Mai 2026 | Nommage final confirmé dans App.jsx                    |
+| Route transfert             | `/cooperative/transfer-lot` (pas `/cooperative/transfer`)                   | Mai 2026 | Correction par rapport à spec initiale                 |
+| SidebarContent module-level | Défini hors du composant Layout                                                | Mai 2026 | Évite unmount/remount React à chaque re-render        |
+| Modal bottom-sheet mobile   | `AnimatePresence` + `motion.aside` slide-up                                 | Mai 2026 | UX mobile-first pour terrain (tablette/smartphone)      |
+| SelectionSummary sticky     | Sidebar desktop + bottom-bar fixe mobile                                        | Mai 2026 | Accès permanent au récapitulatif pendant sélection   |
+| Guard `beforeunload`      | Actif si sélection lots > 0 non confirmée                                     | Mai 2026 | Éviter perte de sélection par navigation accidentelle |
+| Historique transferts lazy  | Chargé uniquement au premier switch d'onglet                                   | Mai 2026 | Optimisation réseau/Supabase                           |
+| Pipeline transformateur     | Composant `ProcessingPipeline` autonome                                       | Mai 2026 | Réutilisable sur page saisie qualité                  |
 
 ### 22.2 Décisions en attente
 
-| Décision | Statut |
-|----------|--------|
-| Logos SVG haute résolution (vectorisation) | ✅ Terminé |
-| Création des comptes test (5 acteurs démo) | ✅ Terminé |
-| Choix du nom utilisateur démo (Kossi AYITE ?) | ⏳ À valider |
-| Vidéo de secours pour démo (Plan B) | ⏳ À tourner avant finale |
-| Faucet MATIC Amoy (financement gas) | ✅ Terminé |
-| Ouverture compte Supabase (free tier) | ✅ Terminé |
-| Configuration domaine Vercel | ⏳ Komi à déployer |
-| Saisie qualité transformateur (QualityEntry.jsx) | ✅ Terminé |
-| Dashboard exportateur + certificat EUDR | ⏳ Prochaine priorité |
-| Dashboard vérificateur | ⏳ À planifier |
+| Décision                                         | Statut                     |
+| ------------------------------------------------- | -------------------------- |
+| Logos SVG haute résolution (vectorisation)       | ✅ Terminé                |
+| Création des comptes test (5 acteurs démo)      | ✅ Terminé                |
+| Choix du nom utilisateur démo (Kossi AYITE ?)    | ⏳ À valider              |
+| Vidéo de secours pour démo (Plan B)             | ⏳ À tourner avant finale |
+| Faucet MATIC Amoy (financement gas)               | ✅ Terminé                |
+| Ouverture compte Supabase (free tier)             | ✅ Terminé                |
+| Configuration domaine Vercel                      | ✅ Terminé       |
+| Saisie qualité transformateur (QualityEntry.jsx) | ✅ Terminé                |
+| Dashboard exportateur + certificat EUDR           | ✅                         |
+| Dashboard vérificateur                           | ✅                         |
 
 ---
 
@@ -2170,6 +2221,7 @@ QrImageView(
 ### Session 1–4 — Mai 2026 : Scaffolding & fondations web
 
 **Réalisations :**
+
 - Monorepo GitHub initialisé (`web/`, `mobile/`, `contracts/`, `shared/`)
 - Smart contract `ChainCacao.sol` déployé sur Polygon Amoy
 - Supabase : projet créé, tables + RLS configurées, 5 comptes démo créés
@@ -2186,6 +2238,7 @@ QrImageView(
 ### Session 5 — Mai 2026 : Routing + Auth (Tâche 5)
 
 **Réalisations :**
+
 - `createBrowserRouter` (React Router v7) avec lazy loading sur toutes les pages rôle
 - `AuthProvider` dans `hooks/useAuth.js` : lit le rôle depuis `user_metadata` puis fallback table `profiles`
 - `signIn` retourne `{ data, error, role }` · `signOut` fait `window.location.replace('/')`
@@ -2200,6 +2253,7 @@ QrImageView(
 ### Session 6 — 11 Mai 2026 : Dashboard Coopérative (Tâche 6)
 
 **Réalisations :**
+
 - `pages/cooperative/Dashboard.jsx` complet : header + bandeau attention + 4 KpiCards + BarChart + PieChart donut + zone travail (lots récents + top producteurs) + 3 quick actions
 - `components/dashboard/KpiCard.jsx` : count-up animé `useInView` + `requestAnimationFrame` (easeOutCubic)
 - `recharts ^3.8.1` installé
@@ -2212,6 +2266,7 @@ QrImageView(
 ### Session 7 — 11 Mai 2026 : Lots reçus coopérative (Tâche 7)
 
 **Réalisations :**
+
 - `pages/cooperative/LotsReceived.jsx` : liste filtrable (statut, espèce, recherche), tableau desktop / cards mobile, vue carte placeholder, query params `?action=new / ?filter=pending / ?view=map`
 - 20 lots mock dans `utils/mockCooperative.js` (4 pending / 6 received / 3 alert / 7 transferred)
 - Exports ajoutés : `getMockCooperativeLots(filters)`, `getMockLotByUuid(uuid)`, `getMockPendingLots()`
@@ -2226,6 +2281,7 @@ QrImageView(
 ### Session 8 — 13 Mai 2026 : Transferts coopérative (Tâche 8)
 
 **Réalisations :**
+
 - `pages/cooperative/TransferLot.jsx` : 2 onglets (Nouveau transfert / Historique), sélection multi-lots (`Set`, O(1)), guard `beforeunload`
 - `components/cooperative/ProcessorCard.jsx` : jauge capacité (vert < 70% / orange 70-90% / rouge > 90%), badges spécialités + certifications, détection incompatibilité espèces
 - `components/cooperative/SelectionSummary.jsx` : sidebar desktop + bottom-bar fixe mobile
@@ -2239,6 +2295,7 @@ QrImageView(
 ### Session 9 — 13 Mai 2026 : Dashboard Transformateur (Tâche 9)
 
 **Réalisations :**
+
 - `pages/processor/Dashboard.jsx` complet : header + bandeau attention (pending/alertes/prêts) + 4 KpiCards + Pipeline + BarChart hebdo + donut Grade A/B/C + activité récente (timeline) + lots alertes + 3 quick actions
 - `components/processor/ProcessingPipeline.jsx` : 4 étapes (Reçus/Fermentation/Séchage/Prêts), horizontal desktop + vertical mobile, count-up animé par étape, stagger 0.1s, hints contextuels, lien `/processor/quality-entry?filter=`
 - `ProcessorLayout.jsx` enrichi : même pattern que CooperativeLayout (drawer mobile, TeamAvatar, CTA "Saisir qualité", 4 navlinks avec icônes)
@@ -2248,6 +2305,7 @@ QrImageView(
 **État du build** : ✅ 2855 modules, 0 erreurs, 2.35s
 
 **Prochaines étapes (Session 10+) :**
+
 1. **[CRITIQUE]** `QualityEntry.jsx` — saisie données qualité transformateur (fermentation, séchage, grade)
 2. **[HAUTE]** `Dashboard.jsx` exportateur — pipeline export + certificat EUDR
 3. **[HAUTE]** Déploiement Vercel initial (pour tests d'intégration)
@@ -2259,6 +2317,7 @@ QrImageView(
 ### Session 10 — 15 Mai 2026 : Saisie Qualité & Initialisation Mobile
 
 **Réalisations :**
+
 - `pages/processor/QualityEntry.jsx` complet : formulaire pour capturer durée de fermentation, humidité, température de séchage.
 - Implémentation du calcul automatique des grades (A/B/C) selon des seuils définis et règles métier.
 - Intégration API avec fallback offline et support de synchronisation.
@@ -2267,6 +2326,7 @@ QrImageView(
 - Implémentation du flux d'authentification (Login) sur mobile.
 
 **Prochaines étapes prioritaires (Session 11+) :**
+
 1. **[CRITIQUE]** App Flutter Android : dashboard producteur, enregistrement parcelle GPS, et création de lot offline.
 2. **[HAUTE]** Dashboard exportateur — pipeline export + génération du certificat EUDR (`Dashboard.jsx`, `EUDRCertificate.jsx`).
 3. **[HAUTE]** Déploiement Vercel initial (pour tests d'intégration Web + Vercel Functions).
@@ -2277,6 +2337,7 @@ QrImageView(
 ### Session 11 — 15 Mai 2026 : Complétude MVP Mobile
 
 **Réalisations :**
+
 - Développement complet de l'application mobile MVP (Android) en Flutter.
 - Intégration et validation des parcours Producteur (`new_lot_screen`, `new_parcel_screen`, `home_screen`) et Collecteur (`home_screen`, `transfer_screen`).
 - Implémentation fonctionnelle du mode offline-first (bannières, SQLite `database_helper`, retry exponentiel `sync_service`).
@@ -2284,6 +2345,7 @@ QrImageView(
 - Les dépendances et l'architecture (Provider, routage, services) sont 100% alignées avec la documentation.
 
 **Prochaines étapes prioritaires (Session 12+) :**
+
 1. **[CRITIQUE]** Build de l'APK Android (release) signé pour distribution (`flutter build apk`).
 2. **[HAUTE]** Dashboard exportateur — pipeline export + génération du certificat EUDR (`Dashboard.jsx`, `EUDRCertificate.jsx`).
 3. **[HAUTE]** Déploiement Vercel initial (pour tests d'intégration Web + Vercel Functions).
@@ -2293,12 +2355,12 @@ QrImageView(
 
 ## 24. CONTACTS ÉQUIPE
 
-| Membre | Rôle | Sous-équipe | Email | Établissement |
-|--------|------|-------------|-------|---------------|
-| **EDOH BEDI Komi Godwin** | Développeur Web + Architecture | Web | edohbedigodwin@gmail.com | EPL |
-| **FOLIKPO-AWUTE Dzogoedzikpe Sophos** | Développeur Web | Web | (à compléter) | IAI Togo |
-| **KOUYOM Bikala** | Développeur Mobile | Mobile | (à compléter) | Lomé Business School |
-| **QUENUM Abla Anne-Marie** | Développeuse Mobile | Mobile | (à compléter) | ESA |
+| Membre                                      | Rôle                           | Sous-équipe | Email                    | Établissement        |
+| ------------------------------------------- | ------------------------------- | ------------ | ------------------------ | --------------------- |
+| **EDOH BEDI Komi Godwin**             | Développeur Web + Architecture | Web          | edohbedigodwin@gmail.com | EPL                   |
+| **FOLIKPO-AWUTE Dzogoedzikpe Sophos** | Développeur Web                | Web          | (à compléter)          | IAI Togo              |
+| **KOUYOM Bikala**                     | Développeur Mobile             | Mobile       | (à compléter)          | Lomé Business School |
+| **QUENUM Abla Anne-Marie**            | Développeuse Mobile            | Mobile       | (à compléter)          | ESA                   |
 
 **Coordination quotidienne** : Groupe WhatsApp TG-16
 **Hackathon** : Miabé Hackathon 2026 — Darollo Technologies Corporation (DTC)
