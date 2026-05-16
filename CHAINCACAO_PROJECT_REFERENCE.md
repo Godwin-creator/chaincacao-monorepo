@@ -16,7 +16,7 @@
 
 # Chaque membre l'uploade dans son outil IA pour garantir la cohérence des contributions.
 
-# Dernière mise à jour : 13 Mai 2026 — Session 9 : Dashboard transformateur (ATC Kpalimé)
+# Dernière mise à jour : 15 Mai 2026 — Session 11 : Complétude MVP Mobile
 
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -1944,17 +1944,17 @@ QrImageView(
 | 2 | Tables Supabase + RLS configurées | Web (Komi) | ✅ |
 | 3 | Site vitrine public (Home, About, How It Works) | Web (Sophos) | ✅ |
 | 4 | Page de vérification publique `/verify/:lotId` | Web (Sophos) | ✅ |
-| 5 | Auth Supabase (login/signup avec rôles) | Web + Mobile | ✅ Web · ⏳ Mobile |
+| 5 | Auth Supabase (login/signup avec rôles) | Web + Mobile | ✅ Web · 🚧 Mobile (Login ✅) |
 | 6 | Dashboard Coopérative + réception lot + transferts | Web (Sophos) | ✅ |
-| 7 | Dashboard Transformateur + saisie qualité | Web (Sophos) | 🚧 Dashboard ✅ · Saisie qualité ⏳ |
+| 7 | Dashboard Transformateur + saisie qualité | Web (Sophos) | ✅ |
 | 8 | Dashboard Exportateur + génération certificat EUDR | Web (Sophos + Komi) | ⏳ |
 | 9 | Vercel Functions critiques (register-lot, transfer, verify) | Web (Komi) | ⏳ |
-| 10 | App Flutter Android : login + dashboard producteur | Mobile (Bikala) | ⏳ |
-| 11 | App Flutter Android : création lot + capture GPS + photos | Mobile (Anne-Marie) | ⏳ |
-| 12 | App Flutter Android : enregistrement parcelle GPS | Mobile (Anne-Marie) | ⏳ |
-| 13 | App Flutter Android : mode offline + SyncService | Mobile (Bikala) | ⏳ |
-| 14 | Génération QR Code (web + mobile) | Web + Mobile | ✅ Web · ⏳ Mobile |
-| 15 | Lecture QR Code (web + mobile) | Web + Mobile | ✅ Web (html5-qrcode, lazy) · ⏳ Mobile |
+| 10 | App Flutter Android : login + dashboard producteur | Mobile (Bikala) | ✅ |
+| 11 | App Flutter Android : création lot + capture GPS + photos | Mobile (Anne-Marie) | ✅ |
+| 12 | App Flutter Android : enregistrement parcelle GPS | Mobile (Anne-Marie) | ✅ |
+| 13 | App Flutter Android : mode offline + SyncService | Mobile (Bikala) | ✅ |
+| 14 | Génération QR Code (web + mobile) | Web + Mobile | ✅ Web · ✅ Mobile |
+| 15 | Lecture QR Code (web + mobile) | Web + Mobile | ✅ Web (html5-qrcode, lazy) · ✅ Mobile |
 | 16 | APK Android signé téléchargeable | Mobile | ⏳ |
 | 17 | Déploiement Vercel fonctionnel | Web (Komi) | ⏳ |
 | 18 | Documentation technique (README, API docs) | Tous | ⏳ |
@@ -2116,7 +2116,7 @@ QrImageView(
 | Faucet MATIC Amoy (financement gas) | ✅ Terminé |
 | Ouverture compte Supabase (free tier) | ✅ Terminé |
 | Configuration domaine Vercel | ⏳ Komi à déployer |
-| Saisie qualité transformateur (QualityEntry.jsx) | ⏳ Session suivante |
+| Saisie qualité transformateur (QualityEntry.jsx) | ✅ Terminé |
 | Dashboard exportateur + certificat EUDR | ⏳ Prochaine priorité |
 | Dashboard vérificateur | ⏳ À planifier |
 
@@ -2256,6 +2256,41 @@ QrImageView(
 
 ---
 
+### Session 10 — 15 Mai 2026 : Saisie Qualité & Initialisation Mobile
+
+**Réalisations :**
+- `pages/processor/QualityEntry.jsx` complet : formulaire pour capturer durée de fermentation, humidité, température de séchage.
+- Implémentation du calcul automatique des grades (A/B/C) selon des seuils définis et règles métier.
+- Intégration API avec fallback offline et support de synchronisation.
+- Scaffolding et restructuration du projet Mobile Flutter (`mobile/`).
+- Configuration des dépendances de base (Supabase, routage, Provider).
+- Implémentation du flux d'authentification (Login) sur mobile.
+
+**Prochaines étapes prioritaires (Session 11+) :**
+1. **[CRITIQUE]** App Flutter Android : dashboard producteur, enregistrement parcelle GPS, et création de lot offline.
+2. **[HAUTE]** Dashboard exportateur — pipeline export + génération du certificat EUDR (`Dashboard.jsx`, `EUDRCertificate.jsx`).
+3. **[HAUTE]** Déploiement Vercel initial (pour tests d'intégration Web + Vercel Functions).
+4. **[MOYENNE]** Vercel Functions critiques (`register-lot`, `transfer`, `verify`).
+
+---
+
+### Session 11 — 15 Mai 2026 : Complétude MVP Mobile
+
+**Réalisations :**
+- Développement complet de l'application mobile MVP (Android) en Flutter.
+- Intégration et validation des parcours Producteur (`new_lot_screen`, `new_parcel_screen`, `home_screen`) et Collecteur (`home_screen`, `transfer_screen`).
+- Implémentation fonctionnelle du mode offline-first (bannières, SQLite `database_helper`, retry exponentiel `sync_service`).
+- Intégration de la génération (`qr_flutter`) et lecture (`mobile_scanner`) de QR codes sur mobile.
+- Les dépendances et l'architecture (Provider, routage, services) sont 100% alignées avec la documentation.
+
+**Prochaines étapes prioritaires (Session 12+) :**
+1. **[CRITIQUE]** Build de l'APK Android (release) signé pour distribution (`flutter build apk`).
+2. **[HAUTE]** Dashboard exportateur — pipeline export + génération du certificat EUDR (`Dashboard.jsx`, `EUDRCertificate.jsx`).
+3. **[HAUTE]** Déploiement Vercel initial (pour tests d'intégration Web + Vercel Functions).
+4. **[MOYENNE]** Vercel Functions critiques (`register-lot`, `transfer`, `verify`).
+
+---
+
 ## 24. CONTACTS ÉQUIPE
 
 | Membre | Rôle | Sous-équipe | Email | Établissement |
@@ -2271,6 +2306,6 @@ QrImageView(
 
 ---
 
-*Dernière mise à jour : 13 Mai 2026 — Session 9 : Dashboard transformateur (ATC Kpalimé)*
+*Dernière mise à jour : 15 Mai 2026 — Session 11 : Complétude MVP Mobile*
 *Ce document évolue avec le projet — toute modification doit être datée et consignée dans la section 23.*
 *Source de vérité unique du projet ChainCacao à respecter.*
