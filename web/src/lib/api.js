@@ -878,46 +878,69 @@ export async function validateLotForEUDR(lotId) {
 }
 
 export async function createShipmentAndCertificate({ buyerId, lotsIds, destinationPort, vesselInfo, notes }) {
+  // Import lazy — jsPDF est volumineux, on ne le charge qu'à la demande
+  const { generateEudrPdf, generateTracesGeoJson } = await import("../utils/generateEudrPdf.js")
+
   try {
-    const maybeFail = Math.random() < 0.05
-    await new Promise((resolve) => setTimeout(resolve, 3000))
-    if (maybeFail) {
-      return {
-        success: false,
-        error: {
-          code: 'BLOCKCHAIN_TX_REJECTED',
-          message: 'La transaction Polygon a expiré avant confirmation.',
-        },
-        source: 'mock',
-      }
+    // Délai simulé inscription Polygon
+    await new Promise((resolve) => setTimeout(resolve, 2800))
+
+    const mock = getMockShipmentCreation({ buyerId, lotsIds, destinationPort, vesselInfo, notes })
+    const buyersMock = getMockExporterBuyers()
+    const buyer = buyersMock.find((b) => b.id === buyerId) ?? buyersMock[0]
+    const availableLots = getMockExportableLots()
+    const selectedLots = availableLots.filter((l) => lotsIds.includes(l.id))
+
+    const exporterProfile = {
+      name: "Togo Export SA",
+      legalName: "Togo Export Société Anonyme",
+      taxId: "TG-2019-0042",
+      operatorEudrId: "EU-OP-TG-00127",
+      port: "Port Autonome de Lomé",
     }
 
-    const result = getMockShipmentCreation({
-      buyerId,
-      lotsIds,
+    const pdfDataUri = generateEudrPdf({
+      certificateNumber: mock.certificateNumber,
+      exporter: exporterProfile,
+      buyer,
+      lots: selectedLots,
       destinationPort,
-      vesselInfo,
-      notes,
+      vesselName: vesselInfo?.vesselName,
+      containerNumber: vesselInfo?.containerNumber,
+      estimatedDeparture: vesselInfo?.estimatedDeparture,
+      txHash: mock.txHash,
     })
+
+    const geoJsonUrl = generateTracesGeoJson({
+      certificateNumber: mock.certificateNumber,
+      lots: selectedLots,
+      exporter: exporterProfile,
+      buyer,
+    })
+
+    try {
+      await supabase
+        .from("lots")
+        .update({ status: "exported", eudr_compliant: true, certificate_number: mock.certificateNumber })
+        .in("lot_uuid", selectedLots.map((l) => l.lotUuid))
+    } catch { /* noop */ }
 
     return {
       success: true,
-      shipmentId: result.shipmentId,
-      certificateNumber: result.certificateNumber,
-      pdfUrl: result.pdfUrl,
-      geoJsonUrl: result.geoJsonUrl,
-      txHash: result.txHash,
-      shipment: result.shipment,
-      source: 'mock',
+      shipmentId: mock.shipmentId,
+      certificateNumber: mock.certificateNumber,
+      pdfUrl: pdfDataUri,
+      geoJsonUrl,
+      txHash: mock.txHash,
+      shipment: mock.shipment,
+      source: "generated",
     }
-  } catch {
+  } catch (err) {
+    console.error("[createShipmentAndCertificate]", err)
     return {
       success: false,
-      error: {
-        code: 'CERTIFICATE_GENERATION_FAILED',
-        message: 'Le dossier EUDR n’a pas pu être généré.',
-      },
-      source: 'mock',
+      error: { code: "CERTIFICATE_GENERATION_FAILED", message: "Le dossier EUDR n’a pas pu être généré." },
+      source: "mock",
     }
   }
 }

@@ -1,12 +1,14 @@
 import { ethers } from 'ethers'
+import { readFileSync } from 'fs'
+import { fileURLToPath } from 'url'
+import { join, dirname } from 'path'
 
-// ABI minimal du contrat ChainCacao (ERC-721 + traçabilité)
-const CHAIN_CACAO_ABI = [
-  'function mintLot(address to, string calldata lotUuid, bytes32 geoJsonHash) external returns (uint256 tokenId)',
-  'function transferCustody(uint256 tokenId, address to, uint8 newStatus) external',
-  'event LotMinted(uint256 indexed tokenId, address indexed producer, string lotUuid)',
-  'event CustodyTransferred(uint256 indexed tokenId, address indexed from, address indexed to, uint8 newStatus)',
-]
+const __dirname = dirname(fileURLToPath(import.meta.url))
+
+// ABI du contrat ChainCacao — source : contracts/ChainCacao.abi.json
+const CHAIN_CACAO_ABI = JSON.parse(
+  readFileSync(join(__dirname, '../../../contracts/ChainCacao.abi.json'), 'utf8')
+)
 
 const STATUS_CODES = { harvested: 0, collected: 1, processed: 2, exported: 3, verified: 4 }
 

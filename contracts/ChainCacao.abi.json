@@ -1,0 +1,120 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "mintLot",
+    "inputs": [
+      { "name": "to",          "type": "address", "internalType": "address" },
+      { "name": "lotUuid",     "type": "string",  "internalType": "string"  },
+      { "name": "geoJsonHash", "type": "bytes32", "internalType": "bytes32" }
+    ],
+    "outputs": [
+      { "name": "tokenId", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "transferCustody",
+    "inputs": [
+      { "name": "tokenId",   "type": "uint256", "internalType": "uint256" },
+      { "name": "to",        "type": "address", "internalType": "address" },
+      { "name": "newStatus", "type": "uint8",   "internalType": "enum ChainCacao.LotStatus" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "setPhotoHash",
+    "inputs": [
+      { "name": "tokenId",   "type": "uint256", "internalType": "uint256" },
+      { "name": "photoHash", "type": "bytes32", "internalType": "bytes32" }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "getLot",
+    "inputs": [
+      { "name": "tokenId", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct ChainCacao.LotInfo",
+        "components": [
+          { "name": "lotUuid",     "type": "string",  "internalType": "string"  },
+          { "name": "geoJsonHash", "type": "bytes32", "internalType": "bytes32" },
+          { "name": "photoHash",   "type": "bytes32", "internalType": "bytes32" },
+          { "name": "producer",    "type": "address", "internalType": "address" },
+          { "name": "status",      "type": "uint8",   "internalType": "enum ChainCacao.LotStatus" },
+          { "name": "mintedAt",    "type": "uint256", "internalType": "uint256" },
+          { "name": "updatedAt",   "type": "uint256", "internalType": "uint256" }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getTokenIdByUuid",
+    "inputs": [
+      { "name": "lotUuid", "type": "string", "internalType": "string" }
+    ],
+    "outputs": [
+      { "name": "", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "verifyGeoJsonIntegrity",
+    "inputs": [
+      { "name": "tokenId",     "type": "uint256", "internalType": "uint256" },
+      { "name": "currentHash", "type": "bytes32", "internalType": "bytes32" }
+    ],
+    "outputs": [
+      { "name": "valid", "type": "bool", "internalType": "bool" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "totalLots",
+    "inputs": [],
+    "outputs": [
+      { "name": "", "type": "uint256", "internalType": "uint256" }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "event",
+    "name": "LotMinted",
+    "inputs": [
+      { "name": "tokenId",    "type": "uint256", "indexed": true  },
+      { "name": "producer",   "type": "address", "indexed": true  },
+      { "name": "lotUuid",    "type": "string",  "indexed": false },
+      { "name": "geoJsonHash","type": "bytes32", "indexed": false }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "CustodyTransferred",
+    "inputs": [
+      { "name": "tokenId",   "type": "uint256", "indexed": true  },
+      { "name": "from",      "type": "address", "indexed": true  },
+      { "name": "to",        "type": "address", "indexed": true  },
+      { "name": "newStatus", "type": "uint8",   "indexed": false },
+      { "name": "timestamp", "type": "uint256", "indexed": false }
+    ],
+    "anonymous": false
+  }
+]
