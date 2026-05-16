@@ -1,34 +1,56 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Palette exacte du logo ChainCacao ── */
-  --color-cacao-green-dark  : #2D5016;  /* vert olive foncé cabosse */
-  --color-cacao-green       : #4A6B2A;  /* vert cabosse principal */
-  --color-cacao-brown       : #5D3A1F;  /* brun fève cacao */
-  --color-cacao-brown-light : #8B5E3C;  /* brun moyen cabosse */
+  /* ═══════════════════════════════════════════════════════════
+     PALETTE CHAINCACAO — "La technologie au service de la terre"
+     Miabé Hackathon 2026 — Équipe TG-16 Shadow Garden
+  ═══════════════════════════════════════════════════════════ */
 
-  --color-chain-bg          : #1A4A5A;  /* fond hexagonal bleu-teal */
-  --color-chain-cyan        : #2196C7;  /* cyan chaîne principal */
-  --color-chain-cyan-light  : #4FC3E8;  /* cyan clair highlights */
+  /* ── Verts cacao (zones agricoles / humaines) ── */
+  --color-cacao-green-dark  : #2D5F2E;  /* vert forêt foncé — navbar, titres, header   */
+  --color-cacao-green       : #4A9B3E;  /* vert cabosse — CTA primaires, boutons        */
+  --color-cacao-green-light : #7DC96F;  /* vert clair — hover, succès, highlights       */
 
-  --color-gold-link         : #D4A574;  /* or/beige points de liaison */
-  --color-gold-premium      : #E8B547;  /* or certifications EUDR */
+  /* ── Bruns cacao (terres, fèves torréfiées) ── */
+  --color-cacao-brown       : #5D3A1F;  /* brun fève — accents forts, texte mis en avant */
+  --color-cacao-brown-light : #8B5E3C;  /* brun moyen — éléments secondaires            */
 
-  /* ── Neutres ── */
-  --color-white             : #FDFCF8;
-  --color-cream             : #F5F1E8;
-  --color-text-dark         : #1A1612;
+  /* ── Cyan blockchain (zones tech / vérification) ── */
+  --color-chain-bg          : #1A4A5A;  /* fond teal profond — pages auth               */
+  --color-chain-cyan        : #2196C7;  /* cyan blockchain — liens, CTA blockchain       */
+  --color-chain-cyan-light  : #4FC3E8;  /* cyan clair — highlights tech, badges          */
+  --color-chain-cyan-pale   : #B3E5F2;  /* cyan pâle — fonds badges vérifiés            */
 
-  /* ── États ── */
-  --color-success           : #4A6B2A;
-  --color-error             : #C1440E;
-  --color-warning           : #E8B547;
-  --color-info              : #4FC3E8;
+  /* ── Or & ocres (valeur premium, certifications) ── */
+  --color-gold-link         : #D4A574;  /* ocre clair — points de liaison, chaleur      */
+  --color-gold-premium      : #E8B547;  /* or moisson — EUDR, certifications premium    */
+  --color-earth-ochre       : #D4A574;  /* alias gold-link (compatibilité)              */
+
+  /* ── Neutres chauds ── */
+  --color-white             : #FDFCF8;  /* blanc cassé — fond principal                 */
+  --color-cream             : #F5F1E8;  /* crème — sections alternées, fonds doux       */
+  --color-gray-light        : #E8E5DD;  /* gris sable — bordures, séparateurs           */
+  --color-gray-medium       : #9B9489;  /* gris neutre — texte secondaire               */
+  --color-gray-text         : #3D3530;  /* gris brun — texte courant                    */
+  --color-text-dark         : #1A1612;  /* quasi-noir — titres principaux               */
+
+  /* ── États & feedback ── */
+  --color-success           : #4A9B3E;  /* vert cacao — validation, lot confirmé        */
+  --color-error             : #C1440E;  /* rouge terre — erreur, fraude détectée        */
+  --color-warning           : #E8B547;  /* or — avertissement, données incomplètes      */
+  --color-info              : #4FC3E8;  /* cyan — information blockchain                */
+
+  /* ── Statuts métier ── */
+  --color-status-harvest    : #4A9B3E;  /* Récolté — vert cabosse                       */
+  --color-status-transit    : #E8B547;  /* En transit — or moisson                      */
+  --color-status-processed  : #8B5E3C;  /* Transformé — brun cabosse                    */
+  --color-status-exported   : #2196C7;  /* Exporté — cyan blockchain                    */
+  --color-status-verified   : #2D5F2E;  /* Vérifié EUDR — vert forêt                    */
 
   /* ── Typographies ── */
-  --font-sans:  'Plus Jakarta Sans', sans-serif;
-  --font-body:  'Inter', sans-serif;
-  --font-mono:  'JetBrains Mono', monospace;
+  --font-sans : 'Plus Jakarta Sans', sans-serif;
+  --font-body : 'Inter', sans-serif;
+  --font-mono : 'JetBrains Mono', monospace;
 }
 
 body {

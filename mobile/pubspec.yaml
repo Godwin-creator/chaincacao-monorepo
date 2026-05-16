@@ -17,9 +17,7 @@ dependencies:
   # Backend & Auth
   supabase_flutter: ^2.5.0
 
-  # Blockchain
-  web3dart: ^2.7.3
-  walletconnect_flutter_v2: ^3.0.0
+  # HTTP
   http: ^1.2.2
 
   # Database & Storage
@@ -40,7 +38,6 @@ dependencies:
   # Device & UI
   connectivity_plus: ^6.0.5
   permission_handler: ^11.3.1
-  lucide_icons: ^0.320.0
   flutter_svg: ^2.0.10+1
   google_fonts: ^6.2.1
   intl: ^0.19.0

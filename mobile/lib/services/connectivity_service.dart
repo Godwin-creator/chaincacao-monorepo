@@ -6,15 +6,15 @@ class ConnectivityService extends ChangeNotifier {
   bool get isOnline => _isOnline;
 
   ConnectivityService() {
-    Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
-      _isOnline = result != ConnectivityResult.none;
+    Connectivity().onConnectivityChanged.listen((List<ConnectivityResult> results) {
+      _isOnline = results.isNotEmpty && results.first != ConnectivityResult.none;
       notifyListeners();
     });
   }
 
   Future<void> checkInitialStatus() async {
-    final result = await Connectivity().checkConnectivity();
-    _isOnline = result != ConnectivityResult.none;
+    final results = await Connectivity().checkConnectivity();
+    _isOnline = results.isNotEmpty && results.first != ConnectivityResult.none;
     notifyListeners();
   }
 }
