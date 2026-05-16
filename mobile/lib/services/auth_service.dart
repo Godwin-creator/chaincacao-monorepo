@@ -7,35 +7,31 @@ class AuthService extends ChangeNotifier {
   UserProfile? _currentUser;
   UserProfile? get currentUser => _currentUser;
 
-  bool get isAuthenticated => SupabaseClientManager.client.auth.currentSession != null;
+  bool get isAuthenticated =>
+      SupabaseClientManager.client.auth.currentSession != null;
 
   Future<void> signIn(String email, String password) async {
-    try {
-      final response = await SupabaseClientManager.client.auth.signInWithPassword(
-        email: email,
-        password: password,
-      );
-      
-      if (response.user != null) {
-        await fetchUserProfile();
-      }
-      notifyListeners();
-    } catch (e) {
-      rethrow;
+    final response = await SupabaseClientManager.client.auth.signInWithPassword(
+      email: email,
+      password: password,
+    );
+
+    if (response.user != null) {
+      // fetchUserProfile peut échouer si la table users n'a pas d'entrée —
+      // on attrape silencieusement pour ne pas bloquer la navigation.
+      await fetchUserProfile();
     }
+    notifyListeners();
   }
 
-  Future<void> signUp(String email, String password, Map<String, dynamic> metadata) async {
-    try {
-      await SupabaseClientManager.client.auth.signUp(
-        email: email,
-        password: password,
-        data: metadata,
-      );
-      notifyListeners();
-    } catch (e) {
-      rethrow;
-    }
+  Future<void> signUp(
+      String email, String password, Map<String, dynamic> metadata) async {
+    await SupabaseClientManager.client.auth.signUp(
+      email: email,
+      password: password,
+      data: metadata,
+    );
+    notifyListeners();
   }
 
   Future<void> signOut() async {
@@ -46,7 +42,9 @@ class AuthService extends ChangeNotifier {
 
   Future<void> fetchUserProfile() async {
     final user = SupabaseClientManager.client.auth.currentUser;
-    if (user != null) {
+    if (user == null) return;
+
+    try {
       final data = await SupabaseClientManager.client
           .from('users')
           .select()
@@ -54,6 +52,12 @@ class AuthService extends ChangeNotifier {
           .single();
       _currentUser = UserProfile.fromJson(data);
       notifyListeners();
+    } on PostgrestException catch (e) {
+      // L'entrée utilisateur n'existe pas encore dans la table users
+      // (compte auth créé mais pas encore de profil). On laisse _currentUser null.
+      debugPrint('[AuthService] Profil utilisateur introuvable : ${e.message}');
+    } catch (e) {
+      debugPrint('[AuthService] Erreur fetchUserProfile : $e');
     }
   }
 }
