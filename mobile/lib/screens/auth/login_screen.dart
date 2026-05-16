@@ -39,9 +39,17 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  static const _demoEmails = {
+    'Producteur':     'producteur@chaincacao.tg',
+    'Coopérative':    'cooperative@chaincacao.tg',
+    'Collecteur':     'collecteur@chaincacao.tg',
+    'Transformateur': 'transformateur@chaincacao.tg',
+    'Exportateur':    'exportateur@chaincacao.tg',
+  };
+
   void _loginAsDemo(String role) {
-    _emailController.text = '${role.toLowerCase()}@chaincacao.tg';
-    _passwordController.text = 'password123';
+    _emailController.text = _demoEmails[role] ?? 'producteur@chaincacao.tg';
+    _passwordController.text = 'Demo1234!';
     _login();
   }
 
