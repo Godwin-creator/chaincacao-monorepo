@@ -59,7 +59,7 @@ class ChainCacaoApp extends StatelessWidget {
         title: 'ChainCacao',
         theme: AppTheme.lightTheme,
         debugShowCheckedModeBanner: false,
-        initialRoute: AppRoutes.login,
+        initialRoute: AppRoutes.splash,
         routes: AppRoutes.routes,
         // Bonne pratique : afficher une SnackBar globale plutôt que des dialogs
         builder: (context, child) => GestureDetector(

@@ -31,6 +31,13 @@ class AppTheme {
   static const Color error = Color(0xFFC1440E);
   static const Color info = Color(0xFF4FC3E8);
 
+  // Lot status badge colors
+  static const Color statusHarvest = Color(0xFF4A9B3E);
+  static const Color statusTransit = Color(0xFFE8B547);
+  static const Color statusProcessed = Color(0xFF8B5E3C);
+  static const Color statusExported = Color(0xFF2196C7);
+  static const Color statusVerified = Color(0xFF2D5F2E);
+
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,

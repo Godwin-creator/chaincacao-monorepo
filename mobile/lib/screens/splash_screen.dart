@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../app.dart';
+import '../services/auth_service.dart';
+import '../models/user.dart';
 import '../config/theme.dart';
+import '../config/routes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -21,23 +23,31 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(const Duration(seconds: 2));
     if (!mounted) return;
 
-    final authProvider = context.read<AuthStateProvider>();
-    if (authProvider.isAuthenticated) {
-      Navigator.pushReplacementNamed(context, '/dashboard');
+    final authService = context.read<AuthService>();
+    if (authService.isAuthenticated) {
+      final user = authService.currentUser;
+      if (user?.role == UserRole.cooperative ||
+          user?.role == UserRole.processor ||
+          user?.role == UserRole.exporter ||
+          user?.role == UserRole.verifier ||
+          user?.role == UserRole.admin) {
+        Navigator.pushReplacementNamed(context, AppRoutes.collectorHome);
+      } else {
+        Navigator.pushReplacementNamed(context, AppRoutes.producerHome);
+      }
     } else {
-      Navigator.pushReplacementNamed(context, '/login');
+      Navigator.pushReplacementNamed(context, AppRoutes.login);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CacaoTheme.chainBg,
+      backgroundColor: AppTheme.cacaoGreenDark,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Placeholder pour le logo
             Container(
               width: 120,
               height: 120,
@@ -48,25 +58,27 @@ class _SplashScreenState extends State<SplashScreen> {
               child: const Icon(
                 Icons.eco,
                 size: 80,
-                color: CacaoTheme.cacaoGreen,
+                color: AppTheme.cacaoGreen,
               ),
             ),
             const SizedBox(height: 24),
             Text(
               'ChainCacao',
-              style: CacaoTheme.headingXL.copyWith(color: Colors.white),
+              style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                    color: Colors.white,
+                  ),
             ),
             const SizedBox(height: 8),
             Text(
               'La technologie au service de la terre',
-              style: CacaoTheme.bodyLarge.copyWith(
-                color: CacaoTheme.chainCyan,
-                fontStyle: FontStyle.italic,
-              ),
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: AppTheme.blockchainCyan,
+                    fontStyle: FontStyle.italic,
+                  ),
             ),
             const SizedBox(height: 48),
             const CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(CacaoTheme.chainCyan),
+              valueColor: AlwaysStoppedAnimation<Color>(AppTheme.blockchainCyan),
             ),
           ],
         ),
