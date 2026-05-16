@@ -41,7 +41,7 @@ export default function Footer() {
                 className="h-8 w-auto"
                 onError={(e) => { e.currentTarget.style.display = 'none' }}
               />
-              <span className="font-sans font-bold text-lg text-chain-cyan">ChainCacao</span>
+              <span className="font-sans font-bold text-lg text-white">ChainCacao</span>
             </div>
             <p className="text-sm font-body text-white/60 leading-relaxed">
               La technologie au service de la terre

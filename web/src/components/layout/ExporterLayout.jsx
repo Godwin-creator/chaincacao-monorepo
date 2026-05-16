@@ -29,8 +29,8 @@ function SidebarContent({ user, signOut, onLinkClick }) {
   return (
     <>
       <div className="p-6 border-b border-white/10">
-        <h2 className="text-chain-cyan font-sans font-bold text-lg">ChainCacao</h2>
-        <p className="text-chain-cyan-light text-xs mt-1">Espace Exportateur</p>
+        <h2 className="text-white font-sans font-bold text-lg">ChainCacao</h2>
+        <p className="text-white/60 text-xs mt-1">Espace Exportateur</p>
       </div>
 
       <div className="p-4 pb-2">
@@ -137,7 +137,7 @@ export default function ExporterLayout() {
           >
             <Menu size={22} />
           </button>
-          <h2 className="text-chain-cyan font-sans font-bold">ChainCacao</h2>
+          <h2 className="text-white font-sans font-bold">ChainCacao</h2>
         </div>
 
         <main className="flex-1 p-4 md:p-8 overflow-auto">

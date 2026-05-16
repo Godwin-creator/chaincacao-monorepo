@@ -101,8 +101,8 @@ export default function Signup() {
             className="h-16 mx-auto mb-4"
             onError={(e) => { e.currentTarget.style.display = 'none' }}
           />
-          <h1 className="text-3xl font-sans font-bold text-chain-cyan">Inscription</h1>
-          <p className="mt-1 text-chain-cyan-light font-body text-sm">
+          <h1 className="text-3xl font-sans font-bold text-white">Inscription</h1>
+          <p className="mt-1 text-white/70 font-body text-sm">
             Créez votre compte ChainCacao
           </p>
         </div>

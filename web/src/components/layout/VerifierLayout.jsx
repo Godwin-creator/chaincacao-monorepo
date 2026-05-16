@@ -23,8 +23,8 @@ function SidebarContent({ user, signOut, onLinkClick }) {
             <Shield size={18} className="text-chain-cyan" />
           </div>
           <div>
-            <h2 className="font-sans text-base font-bold text-chain-cyan">ChainCacao</h2>
-            <p className="mt-0.5 text-xs text-chain-cyan-light">Espace Vérificateur UE</p>
+            <h2 className="font-sans text-base font-bold text-white">ChainCacao</h2>
+            <p className="mt-0.5 text-xs text-white/60">Espace Vérificateur UE</p>
           </div>
         </div>
       </div>
@@ -118,7 +118,7 @@ export default function VerifierLayout() {
           >
             <Menu size={22} />
           </button>
-          <h2 className="text-chain-cyan font-sans font-bold">ChainCacao</h2>
+          <h2 className="text-white font-sans font-bold">ChainCacao</h2>
         </div>
 
         <main className="flex-1 p-4 md:p-8 overflow-auto">
